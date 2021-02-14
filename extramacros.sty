@@ -1,0 +1,248 @@
+%%% bordermatrix
+
+\makeatletter
+\newif\if@borderstar
+\def\bordermatrix{\@ifnextchar*{%
+\@borderstartrue\@bordermatrix@i}{\@borderstarfalse\@bordermatrix@i*}%
+}
+\def\@bordermatrix@i*{\@ifnextchar[{\@bordermatrix@ii}{\@bordermatrix@ii[() ]}}
+\def\@bordermatrix@ii[#1]#2{%
+\begingroup
+\m@th\@tempdima8.75\p@\setbox\z@\vbox{%
+\def\cr{\crcr\noalign{\kern 2\p@\global\let\cr\endline }}%
+\ialign {$##$\hfil\kern 2\p@\kern\@tempdima & \thinspace %
+\hfil $##$\hfil && \quad\hfil $##$\hfil\crcr\omit\strut %
+\hfil\crcr\noalign{\kern -\baselineskip}#2\crcr\omit %
+\strut\cr}}%
+\setbox\tw@\vbox{\unvcopy\z@\global\setbox\@ne\lastbox}%
+\setbox\tw@\hbox{\unhbox\@ne\unskip\global\setbox\@ne\lastbox}%
+\setbox\tw@\hbox{%
+$\kern\wd\@ne\kern -\@tempdima\left\@firstoftwo#1%
+\if@borderstar\kern2pt\else\kern -\wd\@ne\fi%
+\global\setbox\@ne\vbox{\box\@ne\if@borderstar\else\kern 2\p@\fi}%
+\vcenter{\if@borderstar\else\kern -\ht\@ne\fi%
+\unvbox\z@\kern-\if@borderstar2\fi\baselineskip}%
+\if@borderstar\kern-2\@tempdima\kern2\p@\else\,\fi\right\@secondoftwo#1 $%
+}\null \;\vbox{\kern\ht\@ne\box\tw@}%
+\endgroup}
+\makeatother 
+
+\newcommand{\blocknormal}[5]{\Normal\left(
+    \begin{bmatrix}
+    #1 \\ #2
+    \end{bmatrix},
+    \begin{bmatrix}
+      #3 & #5 \\ #5^t & #4
+    \end{bmatrix}
+\right)}
+
+
+\DeclareMathOperator*{\essinf}{ess\,inf}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Deriv}{D}
+\DeclareMathOperator{\Det}{det}
+\DeclareMathOperator{\Expectation}{\mathbb E} 
+\DeclareMathOperator{\E}{E} 
+\DeclareMathOperator{\FRAC}{FRAC}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Hessian}{Hess}
+\DeclareMathOperator{\Normal}{N}
+\DeclareMathOperator{\POL}{POL}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Supp}{supp}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\VECTOR}{\bf vec}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Vol}{vol}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\divergence}{div}
+\DeclareMathOperator{\grad}{grad}
+
+\newcommand{\detof}[1]{\Det \left( #1 \right)}
+\newcommand{\Bspaceat}[1]{B_{#1}}
+\newcommand{\AffineO}{A_1(\Omega)}
+\newcommand{\CC}{\C}
+\newcommand{\Ce}{\operatorname{Ce}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Derivby}[1]{\frac{D}{d#1}}
+\newcommand{\D}{\Deriv}
+\newcommand{\Entropy}{\operatorname{Entropy}}
+\newcommand{\Eq}[1]{Eq.~\eqref{#1}}
+\newcommand{\KH}[2]{\operatorname{DH}\left(#1 \middle| #2 \right)}
+\newcommand{\KLC}{\begin{sideways}{\large $\vDash$}\end{sideways}}  %%  requires rotating.sty
+\newcommand{\KL}[2]{\operatorname{D}\left(#1\,\Vert#2\right)}
+\newcommand{\NN}{\N}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Plabel}[1]{[{#1}]}
+\newcommand{\QQ}{\Q}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\SAffineO}{S\AffineO}
+\newcommand{\SSimO}{S\SimO}
+\newcommand{\SimO}{\Delta(\Omega)}
+\newcommand{\SoSimO}{S\oSimO}
+\newcommand{\ToSimO}{T\oSimO}
+\newcommand{\Vspace}[1]{\mathcal V_{#1}}
+\newcommand{\ZZ}{\Z}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\area}[1]{\Area\left(#1\right)}
+\newcommand{\avalat}[2]{\left| #2 \right|_{#1}}
+\newcommand{\avalof}[1]{\left| #1 \right|}
+\newcommand{\ba}{\bm a}
+\newcommand{\bT}{\bm T}
+\newcommand{\bX}{\bm X}
+\newcommand{\balpha}{{\bm \alpha}}
+\newcommand{\bbeta}{\bm\beta}
+\newcommand{\bb}{\bm b}
+\newcommand{\bc}{\bm c}
+\newcommand{\be}{\bm e}
+\newcommand{\bgamma}{{\bm \gamma}}
+\newcommand{\binormal}[5]{N_2\left(\left[\begin{array}{c}#1\\#2\end{array}\right],\left[\begin{array}{cc}#3&#5\\#5&#4\end{array}\right]\right)}
+\newcommand{\bin}[2]{\text{B}\left(#1,#2\right)}
+\newcommand{\bmu}{\bm\mu}
+\newcommand{\boldeta}{\bm\eta}
+\newcommand{\borelof}[1]{\mathcal{B}\left(#1\right)}
+\newcommand{\bp}{\bm p}
+\newcommand{\btheta}{\bm\theta}
+\newcommand{\bu}{\bm u}
+\newcommand{\bv}{\bm{v}}
+\newcommand{\bw}{\bm w}
+\newcommand{\bxi}{\bm\xi}
+\newcommand{\bx}{\bm x}
+\newcommand{\by}{\bm y}
+\newcommand{\bzeta}{\bm\zeta}
+\newcommand{\card}[1]{\Card\left(#1\right)}
+\newcommand{\centraldensity}[2]{\frac1{\sqrt{2\pi#2}}\exp\left(-\frac{#1}{2#2}\right)}
+\newcommand{\complexu}{\text{i}}
+\newcommand{\complex}{\C}
+\newcommand{\condexpectat}[3]{{\Expectation}_{#1}\left[#2 \middle| #3\right]}
+\newcommand{\conditionally}[3]{\left.\independent{#1}{#2}\right|{#3}}
+\newcommand{\convof}[1]{\operatorname{Conv}#1}
+\newcommand{\corof}[2]{\Cor\left(#1,#2\right)}
+\newcommand{\cosof}[1]{\cos\left(#1\right)}
+\newcommand{\cossqof}[1]{\cos^2\left(#1\right)}
+\newcommand{\covariance}[1]{\Cov\left(#1\right)}
+\newcommand{\covat}[3]{\Cov_{#1}\left(#2,#3\right)}
+\newcommand{\dderivby}[1]{\frac{d^2}{d{#1}^2}}
+\newcommand{\densities}{\mathcal P_{\ge}}
+\newcommand{\derivby}[1]{\frac{d}{d#1}}
+\newcommand{\determinant}[1]{\Det\left(#1\right)}
+\newcommand{\diagof}[1]{\diag\left(#1\right)}
+\newcommand{\dirderat}[3]{\Derivative  {#1} \left(#2\right) #3}
+\newcommand{\dist}[1]{\Dist\left(#1\right)}
+\newcommand{\domof}[1]{\Dom\left(#1\right)}
+\newcommand{\dotboldeta}{\bm{\dot\eta}}
+\newcommand{\dotbtheta}{\bm{\dot\theta}}
+\newcommand{\dpois}[2]{\euler^{-#2} \frac{{#2}^{#1}}{{#1}!}}
+\newcommand{\eD}[2]{\prescript{e}{}\D_{#1}{#2}}
+\newcommand{\eFisherat}[1]{\prescript{e}{}{I\left(#1\right)}}
+\newcommand{\eFishereat}[3]{\prescript{e}{}{I_{#1#2}\left(#3\right)}}
+\newcommand{\eFisheriat}[3]{\prescript{e}{}{I^{#1#2}\left(#3\right)}}
+\newcommand{\eacc}{\prescript{e}{}\D^2}
+\newcommand{\ebug}[4]{\prescript{e}{}\Gamma^{#1}_{#2#3}\left(#4\right)}
+\newcommand{\ehessianat}[2]{\prescript{e}{}\Hessian_{#1}{#2}}
+\newcommand{\erfcof}[1]{\erfc\left(#1\right)}
+\newcommand{\erfof}[1]{\erf\left(#1\right)}
+\newcommand{\estimable}[2]{\Est_{#1}\left(#2\right)}
+\newcommand{\etransport}[2]{\prescript{e}{}{\mathbb U}_{#1}^{#2}}
+\newcommand{\euler}{\mathrm{e}}
+\newcommand{\expectationstar}[2]{{\Expectation}^\star_{#1}\left(#2\right)}
+\newcommand{\expectat}[2]{{\Expectation}_{#1}\left[#2\right]}
+\newcommand{\expectof}[1]{\Expectation\left[#1\right]}
+\newcommand{\expmod}{\mathcal E}
+\newcommand{\expof}[1]{\exp\left(#1\right)}
+\newcommand{\exptanbundle}{T\expmod}
+\newcommand{\exptanspaceat}[1]{T_{#1}\expmod}
+\newcommand{\fracof}[1]{\FRAC\left(#1\right)}
+\newcommand{\given}{\mid}
+\newcommand{\gmodel}{\mathcal N}
+\newcommand{\hD}[2]{\prescript{0}{}\D_{#1}{#2}}
+\newcommand{\hacc}{\prescript{0}{}\D^2}
+\newcommand{\hbug}[4]{\prescript{0}{}\Gamma^{#1}_{#2#3}\left(#4\right)}
+\newcommand{\hessianof}[1]{\Hessian #1}
+\newcommand{\hessian}[4]{\Derivative^2  {#1} \left(#2\right) #3\otimes #4}
+\newcommand{\hhessianat}[2]{\prescript{0}{}\Hessian_{#1}{#2}}
+\newcommand{\htransport}[2]{\prescript{0}{}{\mathbb U}_{#1}^{#2}}
+\newcommand{\ifin}[2]{\indicator{#1}\left(#2\right)}
+\newcommand{\independent}[2]{#1{\indep}#2}
+\newcommand{\indep}{\perp\!\!\!\perp}
+\newcommand{\indicator}[1]{\mathbf{1}_{#1}}
+\newcommand{\integers}{\Z}
+\newcommand{\integrald}[3]{\int_{#1} {#2} \ {#3}}
+\newcommand{\integrali}[4]{\int_{#1}^{#2} {#3} \ d{#4}}
+\newcommand{\integral}[2]{\int {#1} \ {#2}}
+\newcommand{\kcoshof}[1]{\Kcosh\left(#1\right)}
+\newcommand{\kexpof}[1]{\Kexp\left(#1\right)}
+\newcommand{\klnof}[1]{\Kln\left(#1\right)}
+\newcommand{\kplus}{\stackbin[]{\kappa}{\oplus}}
+\newcommand{\ktimes}{\stackbin[\kappa]{}{\otimes}}
+\newcommand{\lnof}[1]{\ln\left(#1\right)}
+\newcommand{\logof}[1]{\log\left( #1 \right)}
+\newcommand{\ltoffor}[2]{\LT_{#2}\left(#1\right)}
+\newcommand{\ltof}[1]{\LT\left(#1\right)}
+\newcommand{\mD}[2]{\prescript{m}{}\D_{#1}{#2}}
+\newcommand{\mFisherat}[1]{\prescript{m}{}{I\left(#1\right)}}
+\newcommand{\macc}{\prescript{m}{}\D^2}
+\newcommand{\manifold}{\mathcal M}
+\newcommand{\mbug}[4]{\prescript{m}{}\Gamma^{#1}_{#2#3}\left(#4\right)}
+\newcommand{\mhessianat}[2]{\prescript{m}{}\Hessian_{#1}{#2}}
+\newcommand{\mixmod}{\prescript{*}{}{\expmod}}
+\newcommand{\model}{\mathcal M}
+\newcommand{\mtransport}[2]{\prescript{m}{}{\mathbb U}_{#1}^{#2}}
+\newcommand{\natnabla}{\operatorname{\widetilde\nabla}}
+\newcommand{\naturals}{\mathbb N}
+\newcommand{\nbinom}[2]{\Bin\left(#1,#2\right)}
+\newcommand{\ndirderat}[4]{\Derivative^{#1}  {#2} \left(#3\right) #4}
+\newcommand{\nonnegreals}{\mathbb{R}_{\ge 0}}
+\newcommand{\normaldensity}[3]{\frac1{\sqrt{2\pi#3}}\exp\left(-\frac{(#1-#2)^2}{2#3}\right)}
+\newcommand{\normalof}[2]{\Normal\left(#1,#2\right)}
+\newcommand{\normat}[2]{\left\Vert #2 \right\Vert_{#1}}
+\newcommand{\normof}[1]{\left\Vert#1\right\Vert}
+\newcommand{\oSimO}{\Delta^\circ(\Omega)}
+\newcommand{\one}{\bm 1} 
+\newcommand{\partialD}[4]{\frac{\partial^{#1}#2}{\partial#3^{#4}}}
+\newcommand{\partialdd}[2]{\frac{\partial^2}{\partial {#1}^2} #2}
+\newcommand{\partiald}[2]{\frac{\partial}{\partial #1} #2}
+\newcommand{\parti}[1]{\Parti\left(#1\right)}
+\newcommand{\pdensities}{\mathcal P_{>}}
+\newcommand{\polof}[1]{\POL\left(#1\right)}
+\newcommand{\posintegers}{\Z_+}
+\newcommand{\posreals}{\mathbb{R}_{>0}}
+\newcommand{\ppmod}{\hspace{-.80em}\pmod}
+\newcommand{\probability}[2]{\Prob_{#1}\left(#2\right)}
+\newcommand{\probade}[1]{\Prob\left[#1\right]}
+\newcommand{\projective}[1]{{\bm P}^{#1}}
+\newcommand{\projof}[2]{\Pi_{#1}{#2}}
+\newcommand{\reals}{\mathbb R}
+\newcommand{\realvectors}[1]{{\mathbb{R}}^#1}
+\newcommand{\sbasisat}[1]{\sbasis_{#1}}
+\newcommand{\sbasis}{\mathcal B}
+\newcommand{\scalarat}[3]{\left\langle #2 , #3 \right\rangle_{#1}}
+\newcommand{\scalarof}[2]{\left\langle #1 , #2 \right\rangle}
+\newcommand{\sdensities}{\mathcal P^1}
+\newcommand{\setof}[2]{\left\{ #1 \middle| #2 \right\}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\sigmasq}[1]{\sigma^2\left(#1\right)}
+\newcommand{\sinof}[1]{\sin\left(#1\right)}
+\newcommand{\sinsqof}[1]{\sin^2\left(#1\right)}
+\newcommand{\smallo}{\operatorname{o}}
+\newcommand{\spanof}[2]{\Span\left(#1 \middle| #2 \right)}
+\newcommand{\spanvar}[1]{\Span\left(#1\right)}
+\newcommand{\sqrtof}[1]{\sqrt{\left(#1\right)}}
+\newcommand{\standarddensity}[1]{\frac1{\sqrt{2\pi}} \euler^{-\dfrac{#1^2}{2}}}
+\newcommand{\suppof}[1]{\Supp{#1}}
+\newcommand{\tanbundleof}[1]{T #1}
+\newcommand{\tanspaceat}[2]{T_{#1}#2}
+\newcommand{\tanspacethm}{\emph{T}}
+\newcommand{\traceof}[1]{\Tr\left(#1\right)}
+\newcommand{\transpose}{*}
+\newcommand{\trasp}{T}
+\newcommand{\upgamma}[2]{\Gammafun\left(#1,#2\right)}
+\newcommand{\varat}[2]{\Var_{#1}\left(#2\right)}
+\newcommand{\vdiag}[1]{\operatorname{vdiag}\left(#1\right)}
+\newcommand{\vectorof}[1]{\VECTOR\left(#1\right)}
+\newcommand{\versof}[1]{\Vers\left(#1\right)}
+\newcommand{\virg}[1]{``#1''}
+\newcommand{\volof}[1]{\Vol\left(#1\right)}
