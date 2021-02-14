@@ -12,7 +12,7 @@
 \usepackage{bm}
 \usepackage{color}
 \usepackage{etex}
-\usepackage{macros}
+\usepackage{extramacros}
 %\usepackage{fullpage}
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -60,6 +60,325 @@ finite sample space.
 %
 %
 \section{Introduction}
+
+\subsection{ANOVA splitting}
+%
+The linear subspaces of the space of random variables $L(\Omega)$ which describe, respectively, the $\gamma$-grand-mean , the \emph{$\gamma$-marginal effects}, the \emph{$\gamma$-interactions}, are respectively
+%
+\begin{equation}\label{eq:ANOVA-spaces}
+\begin{aligned}
+  L_0(\gamma) &\sim \reals, \\
+  L_1(\gamma) &= \setof{f\circ X}{f \in L_0(\gamma_1)},\\
+  L_2(\gamma) &= \setof{f\circ Y}{f \in L_0(\gamma_2)},\\
+  L_{12}(\gamma) &= (\reals + L_1(\gamma) + L_2(\gamma))^\perp,
+\end{aligned}
+\end{equation}
+%
+where orthogonality is computed in the $\gamma$ weight, that is in the scalar product
+%
+\begin{equation*}
+(U,V) \mapsto \expectat \gamma {UV} = \sum_{\omega\in\Omega}U(\omega)V(\omega)
+\gamma(\omega)\end{equation*}
+
+\begin{proposition}[ANOVA]
+\label{prop:ANOVA}
+\begin{enumerate}
+\item
+There exist a splitting
+%
+\begin{equation*}
+%
+  L(\Omega) = \reals \oplus L_1(\gamma) \oplus L_2(\gamma) \oplus L_{12}(\gamma) \ . 
+\end{equation*}
+%
+Precisely, the splitting of $f \in L(\Omega)$ is
+%
+\begin{equation}
+ \label{eq:ANOVA}
+ f = f_0 + f_1 + f_2 + f_{12}
+\end{equation}
+%
+ if $f_0=\expectat \gamma f$ and $f_1+f_2$ is the orthogonal projection of $f$ unto $L_1(\gamma) \oplus L_2(\gamma)$.
+\item The terms $f_1$ and $f_2$ in Eq. \eqref{eq:ANOVA} are characterized by the equations
+%
+\begin{equation}
+\label{eq:projetion}
+  \begin{aligned}
+    \condexpectat \gamma {(f - f_0)} X f_1 + \condexpectat \gamma {(f-f_0)f_2} X &= 0 \ , \\
+    \condexpectat \gamma {(f - f_0)f_1} Y + \condexpectat \gamma {(f-f_0)} Y f_2 &= 0 \ .
+  \end{aligned}
+%
+\end{equation}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\begin{enumerate}
+\item Each couple of spaces in Eq. \eqref{eq:ANOVA-spaces} has trivial intersection $\set{0}$, hence the splitting of $f \in L(\Omega)$ into $f = f_0 + f_1 + f_2 + f_{1,2}$, with $f_0 \in \reals$, $f_1 \in L_1(\gamma)$, $f_2 \in L_2(\gamma)$, $f_{12} \in L_{12}(\gamma)$ is unique. As $\expectat \gamma f = f_0$ and $L_0(\gamma)$ is orthogonal to $L_1(\gamma)+L_2(\gamma)$, then $f_{12}$ is the orthogonal projection of $f - \expectat \gamma f$ unto $(L_1(\gamma)+L_2(\gamma))^\perp$, while $f_1(\gamma)+f_2(\gamma)$ is the orthogonal projection of $f$ onto $L_1(\gamma)+L_2(\gamma)$.
+\item By definition, $(f - f_0) - (f_1 + f_2)$ is $\gamma$-orthogonal to each $g_1+g_2 \in L_1(\gamma)\oplus L_2(\gamma)$ i.e., to each $g_1 \in L_1(\gamma)$ and each $g_2 \in L_2(\gamma)$. The orthogonal projection in such a case is the conditional expectation,
+%
+  \begin{align*}
+    0 &= \condexpectat \gamma {(f-f_0) - (f_1+f_2)}{X}  \ , \\
+   0 &= \condexpectat \gamma {(f-f_0) - (f_1+f_2)}{Y} \ .
+  \end{align*}
+  %
+\end{enumerate}
+\end{proof}
+
+Expressing the conditional expectations with respect to the uniform distribution,
+%
+  \begin{align*}
+    0 &= \condexpectat 0 {\gamma[(f-f_0) - (f_1+f_2)]}{X} \ , \\
+   0 &= \condexpectat 0 {\gamma[(f-f_0) - (f_1+f_2)]}{Y} \ ,
+  \end{align*}
+  % 
+that is
+%
+  \begin{align*}
+  \condexpectat 0 {\gamma(f-f_0)} X =  \condexpectat 0 {\gamma} X f_1 + \condexpectat 0 {\gamma f_2} X \ , \\
+    \condexpectat 0 {\gamma(f-f_0)} Y =  \condexpectat 0 {\gamma f_1} X  + \condexpectat 0 {\gamma} Y f_2\ .
+  \end{align*}
+  % 
+
+The ANOVA decomposition Prop. \ref{prop:ANOVA} proves the existence of the splitting and suggests a computational tool. Assume zero mean, $f_0=0$. The following $(n_1+n_2)\times(n_1+n_2)$ linear system holds:
+%
+\begin{equation*}
+\begin{cases}
+  \sum_{y \in \Omega_2} \gamma(x,y)f(x,y) &= \gamma_1(x) f_1(x) + \sum_{y \in \Omega_2} \gamma(x,y) f_2(y) , \quad x \in \Omega_1 \\
+  \sum_{x \in \Omega_1} \gamma(x,y)f(x,y) &= \sum_{x \in \Omega_1} \gamma(x,y) f_1(x)  + \gamma_2(y)f_2(y) , \quad y \in \Omega_2
+\end{cases}
+\end{equation*}
+%
+
+Equivalently, using the conditional probabilities $\gamma_{2|1}(y|x) \gamma_1(x) = \gamma_{1|2}(x|y) \gamma_2(y) = \gamma(x,y)$, $x \in \Omega_1$ and $y \in \Omega_2$,
+%
+\begin{equation*}
+\begin{cases}
+  \sum_{y \in \Omega_2} \gamma_{2|1}(y|x)f(x,y) &= f_1(x) + \sum_{y \in \Omega_2} \gamma_{2|1}(y|x) f_2(y) , \quad x \in \Omega_1 \\
+  \sum_{x \in \Omega_1} \gamma_{1|2}(x|y)f(x,y) &= \sum_{x \in \Omega_1} \gamma_{1|2}(x|y) f_1(x)  + f_2(y) , \quad y \in \Omega_2
+\end{cases}
+\end{equation*}
+%
+
+We write the previous system in matrix form with blocks $\Gamma_{2|1} = [\gamma_{2|1}(y|x)]_{x \in \Omega_1, y \in \Omega_2} \in \reals^{n_1 \times n_2}$ and $\Gamma_{1|2} = [\gamma_{1|2}(x|y)]_{x \in \Omega_1, y \in \Omega_2} \in \reals^{n_1 \times n_2}$, $\bm f_1 = (f_1(x) | x \in \Omega_1)$ and $\bm f_2 = (f_2(x) | x \in \Omega_2)$, $\bm f_{2|1} = (\sum_{y \in \Omega_2} f(x,y)\gamma_{2|1}(y|x) | x \in \Omega_1)$ and $\bm f_{1|2} = (\sum_{x\in\Omega_1} f(x,y)\gamma_{1|2}(x|y) | x \in \Omega_2)$, as 
+
+\begin{equation}
+\label{eq:block}
+  \begin{bmatrix}
+    I_{n_1} & \Gamma_{2|1} \\ \Gamma_{1|2}^T & I_{n_2}
+  \end{bmatrix}
+  \begin{bmatrix}
+    \bm f_1 \\ \bm f_2
+  \end{bmatrix}
+=
+\begin{bmatrix}
+  \bm f_{2|1} \\ \bm f_{1|2}
+\end{bmatrix}
+\end{equation}
+
+The block matrix is not globally invertible because the kernel contains the vector $\bm 1 _{n_1} \oplus \bm 1_{n_2}$, hence we look for a generalised inverse of the block matrix  which  exists uniquely because of the interpretation as the orthogonal projection of $f \in L(\Omega) \ominus L_0(\gamma)$ onto $L_1(\gamma)\oplus L_2(\gamma)$. Generalised inverses of the Shur complements $(I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T)$ and $(I_{n_2}-\Gamma_{1|2}^T\Gamma_{2|1})$, if available, suggests the following generalised block inversion formula:
+%
+\begin{equation}
+\label{eq:blocksolve}
+\begin{bmatrix}
+    I_{n_1} & \Gamma_{2|1} \\ \Gamma_{1|2}^T & I_{n_2}
+  \end{bmatrix} ^+ =
+  \begin{bmatrix}
+    (I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T)^{+} & - \Gamma_{2|1} (I_{n_2}-\Gamma_{1|2}^T\Gamma_{2|1})^{+} \\
+ - \Gamma_{1|2}^T (I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T)^{+} & (I_{n_2}-\Gamma_{1|2}^T\Gamma_{2|1})^{+} 
+\end{bmatrix} \ 
+\end{equation}
+
+\begin{proposition}
+\begin{enumerate}
+\item The matrices $P = \Gamma_{2|1}\Gamma_{1|2}^T$ and $Q = \Gamma_{1|2}^T\Gamma_{2|1}$ are Markov, with invariant probability $\gamma_1$ and $\gamma_2$ respectively, and strictly positive, hence ergodic.
+\item The generalised inverses $(I-P)^+$ and $(I-Q)^+$ are defined and 
+%
+  \begin{equation*}
+  \begin{bmatrix}
+    \bm f_1 \\ \bm f_2
+  \end{bmatrix}
+=
+    \begin{bmatrix}
+      (I - P)^+ & - \Gamma_{2|1}(I - Q)^+ \\
+- \Gamma_{1|2}(I-P)^+ & (I-Q)^+
+    \end{bmatrix}
+    \begin{bmatrix}
+      \bm f_{2|1} \\ \bm f_{1|2}
+    \end{bmatrix}
+  \end{equation*}
+%
+solves Eq. \eqref{eq:block}.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The element $P_{x_1x_2}$, $x_1,x_2 \in \Omega_1$, of $P = \Gamma_{2|1}\Gamma_{1|2}^T \in \reals^{\Omega_1 \times \Omega_2}$ is
+%
+\begin{equation*}
+  P_{x_1x_2} = \sum_{y \in \Omega_2} \gamma_{2|1}(y|x_1) \gamma_{1|2}(x_2|y) \ ,
+\end{equation*}
+%
+so that $P$ is a Markov matrix with strictly positive entries and stationary probability $\gamma_1$. because of the ergodic theorem, $P^n \to P^\infty = \bgamma_1^T \bm 1$, $n \to \infty$, so that 
+%
+\begin{equation*}
+\lim_{n\to\infty} \left(\sum_{k=0}^n P^k\right)(I-P) = \lim_{n\to\infty} \left(I - P^{n+1}\right) = I - P^\infty \ , 
+\end{equation*}
+%
+so that for each $\bm f_1 \in L(\Omega_1)$ it holds
+%
+\begin{equation*}
+  \lim_{n\to\infty} \left(\sum_{k=0}^n P^k\right)(I-P) \bm f_1 = \bm f_1 - \expectat {\gamma_1} {\bm f_1} \ ,
+\end{equation*}
+%
+where the last term is the orthogonal projection $\Pi_{\gamma_1}$ of $\bm f_1$ onto $L_0(\gamma_1)$. 
+
+Let us write
+%
+\begin{equation*}
+  (I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T)^{+} = \lim_{n\to\infty} \left(\sum_{k=0}^n (\Gamma_{2|1}\Gamma_{1|2}^T)^k\right) \Pi_{\gamma_1}  
+\end{equation*}
+%
+so that
+%
+\begin{equation*}
+  (I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T)^{+}(I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T) = \Pi_{\gamma_1} \ ,
+\end{equation*}
+%
+because $\Pi_{gamma_1} (I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T) = (I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T)$.
+
+Similarly, for $Q = \Gamma_{2|1}^T\Gamma_{1|2}$, we have
+%
+\begin{equation*}
+  (I_{n_1}-\Gamma_{2|1}^T\Gamma_{1|2})^{+}(I_{n_1}-\Gamma_{2|1}^T\Gamma_{1|2}) = \Pi_{\gamma_2} \ ,
+\end{equation*}
+%
+It follows that Eq. \eqref{eq:block} is solved with Eq. \eqref{eq:blocksolve}.
+\end{proof}
+
+\subsection{Transport plan}
+
+We now define the transport plan model and apply the ANOVA decomposition to the study of its geometry. 
+
+\begin{definition}\ 
+  Let be given $\mu_1 \in \Delta^\circ(\Omega_1)$ and $\mu_2 \in \Delta^\circ(\Omega_2)$.\begin{enumerate}
+  \item  The \emph{transport plan model} (alias \emph{Fr\'echet class}, \emph{copulas}, \emph{Gini's set} \dots) with margins $\mu_1$ and $\mu_2$ is the statistical model
+%
+  \begin{equation*}
+    \Gamma(\mu_1,\mu_2) = \setof{\gamma \in \Delta(\Omega)}{X_\# \gamma = \mu_1, Y_\# \gamma = \mu_2} \ ,
+  \end{equation*}
+%
+where $\Omega=\Omega_1 \times \Omega_2$.
+\item  The \emph{open} transport plan is 
+%
+  \begin{equation*}
+    \Gamma^\circ(\mu_1,\mu_2) = \setof{\gamma \in \Delta^\circ(\Omega)}{X_\# \gamma = \mu_1, Y_\# \gamma = \mu_2} \ .
+  \end{equation*}
+%
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}\ 
+  \begin{enumerate}
+  \item $\Gamma(\mu_1,\mu_2)$ is a closed convex subset of $\Delta(\Omega)$ with algebraic interior $\Gamma^\circ(\mu_1,\mu_2) \subset \Delta(\Omega)$. The interior is never empty as it contains  contains $\mu_1 \otimes \mu_2$.
+  \item Let $t \mapsto \gamma(t) \in \Gamma^\circ(\mu_1,\mu_2)$ be a regular curve of the statistical bundle $S\Delta^\circ(\Omega)$ with $\gamma(0)=\gamma$. Let $\Bspaceat \gamma = S_\gamma \Delta^\circ(\Omega)$ be the fiber at $\gamma$ with ANOVA decomposition $\Bspaceat \gamma = B_1(\gamma) \oplus B_2(\gamma) \oplus B_{12}(\gamma)$. Then the score at $\gamma$ belongs to the interactions, $D\gamma(0) \in B_{12}(\gamma)$.
+  \item Viceversa, given any interaction $V \in B_{12}(\gamma)$, the curve $t \mapsto \gamma(t) = (1+tV)\gamma$ stays in $\Gamma^\circ(\mu_1,\mu_2)$ for $t$ in a neighborhood of 0, with $V = D\gamma(0)$. 
+\end{enumerate}
+\end{proposition}
+
+\begin{proof} \ 
+  \begin{enumerate}
+  \item Trivial checks.\footnote{really?}
+  \item We already know $\expectat {\gamma} {D\gamma(0)} = 0$. For each $f \in L_0(\mu_1)$ we have $f \circ X \in L_1(\gamma)$ and 
+%
+    \begin{equation*}
+    \scalarat \gamma {f \circ X}{D\gamma(0)} = \left. \derivby t \expectat {\gamma(t)} {f \circ X} \right|_{t=0} = \left. \derivby t \expectat {X_{\#}\gamma(t)} {f} \right|_{t=0} = \left. \derivby t \expectat {\mu_1} {f} \right|_{t=0} = 0 \ .
+    \end{equation*}
+%
+Same in the other margin.
+  \item Given $V \in B_{12}(\gamma)$ there exist an open interval I around 0 such that $I \ni t \mapsto \gamma(t) = (1+tV)\gamma$ is a regular curve in $\Gamma^\circ(\mu_1,\mu_2) \subset \Delta^\circ(\Omega)$. It is indeed a curve in $\Delta^\circ(\Omega)$ because $\sum_{x,y} \gamma(x,y)(1+tV(x,y)) = \expectat \gamma {1+tV} = 1$ and because $\gamma(x,y)(1+tV(x,y)) > 0$ for all $x,y$, if $t \in ]- (\max V)^{-1}, - (\min V)^{-1}[$.  The score exists and is computed as
+%
+\    \begin{equation*}
+     D\gamma(0) = \left.  \derivby t \logof{(1+tV)\gamma} \right|_{t=0} = \left. \frac V {1+tV} \right|_{t=0} = V \ .
+    \end{equation*}
+%
+Finally, let us compute the margins of $(x,y) \mapsto \gamma(x,y;t) = (1+tV(x,y))\gamma(x,y)$. For all $x \in \Omega_1$,
+%
+\begin{multline*}
+  \sum_y (1+tV(x,y))\gamma(x,y) = X_\# \gamma(x) + t \sum_y V(x,y)\gamma(x,y) = \\ \mu_1(x) + t \expectat \gamma {e_x\circ X V} = \mu_1(x) \ ,
+\end{multline*}
+%
+where $e_x \colon \Omega_1 \to \reals$ is the indicator function of $x$. Same for the other margin.
+  \end{enumerate}
+\end{proof}
+%
+\begin{definition}
+The \emph{Fr\'echet bundle}\footnote{Any better name?} with margins $\mu_1$ and $\mu_2$ is the sub statistical bundle
+%
+\begin{equation*}
+  S\Gamma(\mu_1,\mu_2) = \setof{(\gamma,V)}{\gamma\in\Gamma^\circ(\mu_1,\mu_2),V \in (S_\gamma\Gamma^\circ(\mu_1,\mu_2))_{12}(\gamma)} \ .
+\end{equation*}
+\end{definition}
+
+\begin{remark}
+  We should compute natural charts and parallel traslations of such a bundle.
+\end{remark}
+
+\begin{remark}
+  We should compute natural charts and parallel traslations of such a bundle.
+\end{remark}
+
+\begin{exercise}[Binary case] 
+%
+  \begin{figure}[t]
+    \centering
+    \includegraphics[width=.4\textwidth]{plan2x2.pdf}
+    \caption{Plan on binary sample space}
+    \label{fig:1}
+  \end{figure}
+%
+We start with the case $n_1=n_2=2$. Let $\Omega_1=\Omega_2=\set{+,-}$, $\Omega=\set{++,+-,-+,--}$ Any function on $\Omega$ has the pseudo-Boolean form $f(x,y)=a_0+a_1 x + a_2 y + a_{12} xy$. In particular a probability has the form $\gamma(x,y) = \frac14(1+b_1x+b_2y+b_{12}xy)$ with $\gamma_1(x) = X_{\#}\gamma (x)= \frac12(1+b_1x)$, $\gamma_2(y) = Y_\# \gamma(y) = \frac12(1+b_2y)$. Given $\bar b_1, \bar b_2 \in ]-1,+1[$ to fix the margins, the plan is given by the 1 parameter family 
+%
+  \begin{equation*}
+    \gamma(x,y) = \frac14(1+\bar b_1x+\bar b_2y+b_{12}xy), \quad -1 + \avalof{\bar b_1+\bar b_2} < b_{12} < 1 - \avalof{\bar b_1 - \bar b_2} \ .
+  \end{equation*}
+\end{exercise}
+
+\subsection{Gradient flow}
+
+\begin{proposition}Let be given a cost function $c \colon \Omega_1 \times \Omega_2 \to \reals$ and define the expected cost function $C \colon \SimO \ni \gamma \mapsto \expectat \gamma c$. Then the function $C$ restricted to the open plan $\Gamma^\circ(\mu_1,\mu_2)$ has statistical gradient
+%
+\begin{equation*}
+ \grad_{\Gamma(\mu_1,\mu_2)} W \colon \gamma \mapsto w - \expectat \gamma w - w_{1,\gamma} - w_{2,\gamma} \in S_\gamma\Gamma(\mu_1,\mu_2) = (S_\gamma \oSimO)_{12} \ . 
+\end{equation*}
+
+It follows that the gradient flow of $W$ is
+%
+\begin{equation*}
+  D\gamma(t) = - \left(w - \expectat \gamma w - w_{1,\gamma} - w_{2,\gamma}\right) \ .
+\end{equation*}
+
+Any solution $t \mapsto \gamma(t)$ of the gradient flow converges to a measure $\gamma* = \lim_{t \to \infty} \gamma(t) \in \SimO$ such that $\expectat {\gamma^*} w$ is the \emph{Gini dissimilarity} or \emph{Wasserstein distance} between $\mu_1$ and $\mu_2$,
+%
+\begin{equation*}
+  \expectat {\gamma*} w = \min \setof{\expectat \gamma w}{ \gamma \in \Gamma(\mu_1,\mu_2)} \ .
+\end{equation*}
+%
+ Moreover, the extension of the gradient to $\SimO$ is zero at $\gamma^*$, namely
+%
+\begin{equation*}
+  w = \expectat {\gamma^*} w + w_{1,\gamma^*} + w_{2,\gamma^*}
+\end{equation*}
+%
+on $\suppof{\gamma^*}$.
+\end{proposition}
+
+\begin{proof}
+  
+\end{proof}
+
+\subsection{Kantorovich}
+
 % \subsection{A Subsection Sample}
 % Please note that the first paragraph of a section or subsection is
 % not indented. The first paragraph that follows a table, figure,
