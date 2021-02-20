@@ -60,10 +60,23 @@ finite sample space.
 %
 %
 \section{Introduction}
+Consider a product finite sample space
+$\Omega=\Omega_1 \times \Omega_2$ and marginal mappings
+$X \colon \Omega \to \Omega_1$, $Y \colon \Omega \to \Omega_2$. If
+$\gamma$ is a probability function on $\Omega$, we denote by
+$\gamma_1$ and $\gamma_2$ the image probability functions on
+$\Omega_1$ and $\Omega_2$, respectively. We denote by $L(\Omega)$,
+$L(\Omega_1)$ and $L(\Omega_2)$ the spaces of real random variables
+and by $L_0(\gamma)$, $L_0(\gamma_1)$ and $L_0(\gamma_2)$ the spaces
+of random variables which are centered for the given probability
+function.
 
-\subsection{ANOVA splitting}
+\subsection{Splitting}
 %
-The linear subspaces of the space of random variables $L(\Omega)$ which describe, respectively, the $\gamma$-grand-mean , the \emph{$\gamma$-marginal effects}, the \emph{$\gamma$-interactions}, are respectively
+Let $\gamma$ be a probability function on $\Omega$. The linear
+subspaces of the space of random variables $L(\Omega)$ which describe,
+respectively, the $\gamma$-grand-mean , the \emph{$\gamma$-marginal
+  effects}, and the \emph{$\gamma$-interactions}, are respectively
 %
 \begin{equation}\label{eq:ANOVA-spaces}
 \begin{aligned}
@@ -77,8 +90,8 @@ The linear subspaces of the space of random variables $L(\Omega)$ which describe
 where orthogonality is computed in the $\gamma$ weight, that is in the scalar product
 %%
 \begin{equation*}
-(U,V) \mapsto \expectat \gamma {UV} = \sum_{\omega\in\Omega}U(\omega)V(\omega)
-\gamma(\omega)\end{equation*}
+  (u,v) \mapsto \scalarat \gamma u v = \sum_{\omega\in\Omega}u(\omega)v(\omega)
+  \gamma(\omega)\end{equation*}
 
 \begin{proposition}[ANOVA]
 \label{prop:ANOVA}
