@@ -7,6 +7,7 @@
 \usepackage[hyphens]{url}
 \usepackage[pdftex]{graphicx}
 \usepackage{amsmath,amssymb}
+%\usepackage{accents}
 %\usepackage{amsthm}
 \usepackage{array}
 \usepackage{bm}
@@ -44,7 +45,8 @@
 % If there are more than two authors, 'et al.' is used.
 %
 \institute{De Castro Statistics, Collegio Carlo Alberto, Piazza
-  Arbarello 8, 10122 Torino, Italy \\ \email{giovanni.pistone@carloalberto.org}\\
+  Arbarello 8, 10122 Torino, Italy \\
+  \email{giovanni.pistone@carloalberto.org}\\
   \url{https://www.giannidi orestino.it}}
 %
 \maketitle              % typeset the header of the contribution
@@ -52,7 +54,6 @@
 \begin{abstract}
 We discuss the gradient flow problem for the Kantorovich distance on a
 finite sample space.
-
 \keywords{Gradient flow \and Kantorovich optimal transport \and
   Statistical bundle.}
 \end{abstract}
@@ -71,19 +72,62 @@ and by $L_0(\gamma)$, $L_0(\gamma_1)$ and $L_0(\gamma_2)$ the spaces
 of random variables which are centered for the given probability
 function.
 
-\subsection{Splitting}
+We use the non-parametric version of Information Geometry as described
+in the tutorial \cite{pistone:2020-NPCS}. In this setup,
+$\Delta^\circ(\Omega)$ is the interior of the probability simplex and
+$S = S\Delta^\circ(\Omega)$ is the \emph{statistical bundle}, that is, the
+set of all couples $(\gamma,u)$ with $\gamma \in \Delta^\circ(\Omega)$
+and $u$ a random variable such that $\expectat \mu u=0$. For each
+smooth curve $t \mapsto \gamma(t) \in \Delta^\circ(\Omega)$ the
+\emph{velocity} $\velocity \gamma(t) = \derivby t \log \gamma(t)$ is
+characterised by
+\begin{equation}
+  \label{eq:1}
+  \derivby t \expectat {\gamma(t)} u = \scalarat {\gamma(t)} {\velocity
+  \gamma(t)} u \ .
+\end{equation}
+
+On a sub-manifold, each fiber $S_\gamma$ of the
+statistical bundle splits to define a proper sub-statistical bundle. 
+
+We are interested in the sub-manifold of tranport plans. Let be given
+$\mu_1 \in \Delta^\circ(\Omega_1)$ and $\mu_2 \in
+\Delta^\circ(\Omega_2)$. The \emph{transport plan model} with margins $\mu_1$ and $\mu_2$ is the statistical model
 %
-Let $\gamma$ be a probability function on $\Omega$. The linear
-subspaces of the space of random variables $L(\Omega)$ which describe,
-respectively, the $\gamma$-grand-mean , the \emph{$\gamma$-marginal
-  effects}, and the \emph{$\gamma$-interactions}, are respectively
+  \begin{equation*}
+    \Gamma(\mu_1,\mu_2) = \setof{\gamma \in \Delta(\Omega)}{X_\# \gamma = \mu_1, Y_\# \gamma = \mu_2} \ ,
+  \end{equation*}
+%
+where $\Omega=\Omega_1 \times \Omega_2$. The \emph{open} transport plan is 
+%
+  \begin{equation*}
+    \Gamma^\circ(\mu_1,\mu_2) = \setof{\gamma \in \Delta^\circ(\Omega)}{X_\# \gamma = \mu_1, Y_\# \gamma = \mu_2} \ .
+  \end{equation*}
+  %
+
+  Let $t \mapsto \gamma(t)$ be a smooth curve in the open transport
+  plan. Equation \eqref{eq:1} with $u = f(X)$ gives
+  \begin{equation*}
+  0 = \derivby t \expectat {\mu_1} f =  \derivby t \expectat
+  {\gamma(t)} {f(X)} = \scalarat {\gamma(t)} {\velocity \gamma(t)}
+  {f(X)} = \scalarat {\mu_1} {{\velocity \gamma(t)}_1} f \ , 
+  \end{equation*}
+with ${\velocity \gamma(t)}_1(X) = \condexpectat {\gamma(t)} {\velocity
+  \gamma(t)} X$. Similarly for the other margin.
+
+Let us discuss more in detail the relevant splitting in the language
+of statistical ANOVA. Let $\gamma$ be
+a probability function on $\Omega$. The linear subspaces of the space
+of random variables $L(\Omega)$ which describe, respectively, the
+$\gamma$-grand-mean, the two \emph{$\gamma$-marginal effects}, and
+the \emph{$\gamma$-interactions}, are
 %
 \begin{equation}\label{eq:ANOVA-spaces}
 \begin{aligned}
   L_0(\gamma) &\sim \reals, \\
   L_1(\gamma) &= \setof{f\circ X}{f \in L_0(\gamma_1)},\\
   L_2(\gamma) &= \setof{f\circ Y}{f \in L_0(\gamma_2)},\\
-  L_{12}(\gamma) &= (\reals + L_1(\gamma) + L_2(\gamma))^\perp,
+  L_{12}(\gamma) &= (L_0(\gamma) + L_1(\gamma) + L_2(\gamma))^\perp,
 \end{aligned}
 \end{equation}
 %
@@ -93,50 +137,49 @@ where orthogonality is computed in the $\gamma$ weight, that is in the scalar pr
   (u,v) \mapsto \scalarat \gamma u v = \sum_{\omega\in\Omega}u(\omega)v(\omega)
   \gamma(\omega)\end{equation*}
 
-\begin{proposition}[ANOVA]
-\label{prop:ANOVA}
-\begin{enumerate}
-\item
-There exist a splitting
+Each element of the space $L_0(\gamma) + L_1(\gamma) + L_2(\gamma)$
+has the form $u = u_0 + f_1(X) + f_2(Y)$, where
+$u_0 = \expectat \gamma u$ and $f_1,f_2$ are uniquely defined. More
+precisely, we have the following.
+
+\paragraph{1.} \textit{There exist a splitting
 %
 \begin{equation*}
 %
-  L(\Omega) = \reals \oplus L_1(\gamma) \oplus L_2(\gamma) \oplus L_{12}(\gamma) \ . 
+  L(\gamma)) = \reals \oplus \left(L_1(\gamma) + L_2(\gamma)\right) \oplus L_{12}(\gamma) \ . 
 \end{equation*}
 %
-Precisely, the splitting of $f \in L(\Omega)$ is
+Namely, the splitting of each $u \in L(\gamma)$ is
 %
 \begin{equation}
  \label{eq:ANOVA}
- f = f_0 + f_1 + f_2 + f_{12}
+ u = u_0 + u_1 + u_2 + u_{12} \ ,
 \end{equation}
 %
- if $f_0=\expectat \gamma f$ and $f_1+f_2$ is the orthogonal projection of $f$ unto $L_1(\gamma) \oplus L_2(\gamma)$.
-\item The terms $f_1$ and $f_2$ in Eq. \eqref{eq:ANOVA} are characterized by the equations
+where $u_0=\expectat \gamma u$ and $u_1+u_2$ is the
+$\gamma$-orthogonal projection of $u$ unto
+$L_1(\gamma) + L_2(\gamma)$.}
+
+Each couple of spaces in Eq. \eqref{eq:ANOVA-spaces} has trivial intersection $\set{0}$, hence the splitting of $f \in L(\Omega)$ into $f = f_0 + f_1 + f_2 + f_{1,2}$, with $f_0 \in \reals$, $f_1 \in L_1(\gamma)$, $f_2 \in L_2(\gamma)$, $f_{12} \in L_{12}(\gamma)$ is unique. As $\expectat \gamma f = f_0$ and $L_0(\gamma)$ is orthogonal to $L_1(\gamma)+L_2(\gamma)$, then $f_{12}$ is the orthogonal projection of $f - \expectat \gamma f$ unto $(L_1(\gamma)+L_2(\gamma))^\perp$, while $f_1(\gamma)+f_2(\gamma)$ is the orthogonal projection of $f$ onto $L_1(\gamma)+L_2(\gamma)$.
+
+\paragraph{2.}\textit{The terms $u_1$ and $u_2$ in Eq. \eqref{eq:ANOVA} are characterized by the equations
 %
 \begin{equation}
 \label{eq:projetion}
   \begin{aligned}
-    \condexpectat \gamma {(f - f_0)} X f_1 + \condexpectat \gamma {(f-f_0)f_2} X &= 0 \ , \\
-    \condexpectat \gamma {(f - f_0)f_1} Y + \condexpectat \gamma {(f-f_0)} Y f_2 &= 0 \ .
+    \condexpectat \gamma {(u - u_0)} X u_1 + \condexpectat \gamma {(u-u_0)u_2} X &= 0 \ , \\
+    \condexpectat \gamma {(u - u_0)u_1} Y + \condexpectat \gamma {(u-u_0)} Y u_2 &= 0 \ .
   \end{aligned}
 %
-\end{equation}
-\end{enumerate}
-\end{proposition}
+\end{equation}}
 
-\begin{proof}
-\begin{enumerate}
-\item Each couple of spaces in Eq. \eqref{eq:ANOVA-spaces} has trivial intersection $\set{0}$, hence the splitting of $f \in L(\Omega)$ into $f = f_0 + f_1 + f_2 + f_{1,2}$, with $f_0 \in \reals$, $f_1 \in L_1(\gamma)$, $f_2 \in L_2(\gamma)$, $f_{12} \in L_{12}(\gamma)$ is unique. As $\expectat \gamma f = f_0$ and $L_0(\gamma)$ is orthogonal to $L_1(\gamma)+L_2(\gamma)$, then $f_{12}$ is the orthogonal projection of $f - \expectat \gamma f$ unto $(L_1(\gamma)+L_2(\gamma))^\perp$, while $f_1(\gamma)+f_2(\gamma)$ is the orthogonal projection of $f$ onto $L_1(\gamma)+L_2(\gamma)$.
-\item By definition, $(f - f_0) - (f_1 + f_2)$ is $\gamma$-orthogonal to each $g_1+g_2 \in L_1(\gamma)\oplus L_2(\gamma)$ i.e., to each $g_1 \in L_1(\gamma)$ and each $g_2 \in L_2(\gamma)$. The orthogonal projection in such a case is the conditional expectation,
+By definition, $(f - f_0) - (f_1 + f_2)$ is $\gamma$-orthogonal to each $g_1+g_2 \in L_1(\gamma)\oplus L_2(\gamma)$ i.e., to each $g_1 \in L_1(\gamma)$ and each $g_2 \in L_2(\gamma)$. The orthogonal projection in such a case is the conditional expectation,
 %
   \begin{align*}
     0 &= \condexpectat \gamma {(f-f_0) - (f_1+f_2)}{X}  \ , \\
    0 &= \condexpectat \gamma {(f-f_0) - (f_1+f_2)}{Y} \ .
   \end{align*}
   %
-\end{enumerate}
-\end{proof}
 
 Expressing the conditional expectations with respect to the uniform distribution,
 %
@@ -153,7 +196,7 @@ that is
   \end{align*}
   % 
 
-The ANOVA decomposition Prop. \ref{prop:ANOVA} proves the existence of the splitting and suggests a computational tool. Assume zero mean, $f_0=0$. The following $(n_1+n_2)\times(n_1+n_2)$ linear system holds:
+The ANOVA decomposition proves the existence of the splitting and suggests a computational tool. Assume zero mean, $f_0=0$. The following $(n_1+n_2)\times(n_1+n_2)$ linear system holds:
 %
 \begin{equation*}
 \begin{cases}
@@ -269,27 +312,7 @@ Similarly, for $Q = \Gamma_{2|1}^T\Gamma_{1|2}$, we have
 It follows that Eq. \eqref{eq:block} is solved with Eq. \eqref{eq:blocksolve}.
 \end{proof}
 
-\subsection{Transport plan}
-
 We now define the transport plan model and apply the ANOVA decomposition to the study of its geometry. 
-
-\begin{definition}\ 
-  Let be given $\mu_1 \in \Delta^\circ(\Omega_1)$ and $\mu_2 \in \Delta^\circ(\Omega_2)$.\begin{enumerate}
-  \item  The \emph{transport plan model} (alias \emph{Fr\'echet class}, \emph{copulas}, \emph{Gini's set} \dots) with margins $\mu_1$ and $\mu_2$ is the statistical model
-%
-  \begin{equation*}
-    \Gamma(\mu_1,\mu_2) = \setof{\gamma \in \Delta(\Omega)}{X_\# \gamma = \mu_1, Y_\# \gamma = \mu_2} \ ,
-  \end{equation*}
-%
-where $\Omega=\Omega_1 \times \Omega_2$.
-\item  The \emph{open} transport plan is 
-%
-  \begin{equation*}
-    \Gamma^\circ(\mu_1,\mu_2) = \setof{\gamma \in \Delta^\circ(\Omega)}{X_\# \gamma = \mu_1, Y_\# \gamma = \mu_2} \ .
-  \end{equation*}
-%
-\end{enumerate}
-\end{definition}
 
 \begin{proposition}\ 
   \begin{enumerate}
