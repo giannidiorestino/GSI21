@@ -312,27 +312,26 @@ Similarly, for $Q = \Gamma_{2|1}^T\Gamma_{1|2}$, we have
 It follows that Eq. \eqref{eq:block} is solved with Eq. \eqref{eq:blocksolve}.
 \end{proof}
 
-We now define the transport plan model and apply the ANOVA decomposition to the study of its geometry. 
+We now apply the ANOVA decomposition to the study of the open transport model geometry as a sub-bundle of the statistical bundle $S\Delta^\circ(\Omega)$. Recall that the transport model $\Gamma(\gamma_1,\gamma_2)$ is a closed convex subset of $\Delta(\Omega)$. We assume the marginal probability function $\gamma_1$ and $\gamma_2$ to be strictly positive. The algebraic interior of the transport model is the open transport model $\Gamma^\circ(\gamma_1,\gamma_2) \subset \Delta^\circ(\Omega)$. The interior is never empty as it contains  contains $\gamma_1 \otimes \gamma_2$. The sub[-bundle is characterized by the following two statements.
 
-\begin{proposition}\ 
-  \begin{enumerate}
-  \item $\Gamma(\mu_1,\mu_2)$ is a closed convex subset of $\Delta(\Omega)$ with algebraic interior $\Gamma^\circ(\mu_1,\mu_2) \subset \Delta(\Omega)$. The interior is never empty as it contains  contains $\mu_1 \otimes \mu_2$.
-  \item Let $t \mapsto \gamma(t) \in \Gamma^\circ(\mu_1,\mu_2)$ be a regular curve of the statistical bundle $S\Delta^\circ(\Omega)$ with $\gamma(0)=\gamma$. Let $\Bspaceat \gamma = S_\gamma \Delta^\circ(\Omega)$ be the fiber at $\gamma$ with ANOVA decomposition $\Bspaceat \gamma = B_1(\gamma) \oplus B_2(\gamma) \oplus B_{12}(\gamma)$. Then the score at $\gamma$ belongs to the interactions, $D\gamma(0) \in B_{12}(\gamma)$.
-  \item Viceversa, given any interaction $V \in B_{12}(\gamma)$, the curve $t \mapsto \gamma(t) = (1+tV)\gamma$ stays in $\Gamma^\circ(\mu_1,\mu_2)$ for $t$ in a neighborhood of 0, with $V = D\gamma(0)$. 
-\end{enumerate}
-\end{proposition}
+\paragraph{$\bm\models$} \emph{Let $t \mapsto \gamma(t) \in \Gamma^\circ(\gamma_1,\gamma_2)$ be a smooth curve with $\gamma(0)=\gamma$. Let $B_\gamma = S_\gamma \Delta^\circ(\Omega)$ be the fiber at $\gamma$ of the statistical bundle. Write the ANOVA decomposition as
+  \begin{equation*}
+    \Bspaceat \gamma = (B_1(\gamma) + B_2(\gamma)) \oplus B_{12}(\gamma) \ .
+  \end{equation*}
+  Then the velocity at $\gamma$ belongs to the interactions, $\velocity \gamma(0) \in B_{12}(\gamma)$.}
 
-\begin{proof} \ 
-  \begin{enumerate}
-  \item Trivial checks.\footnote{really?}
-  \item We already know $\expectat {\gamma} {D\gamma(0)} = 0$. For each $f \in L_0(\mu_1)$ we have $f \circ X \in L_1(\gamma)$ and 
+
+We already know that $\expectat {\gamma} {\velocity\gamma(0)} = 0$. For each $f \in L_0(\gamma_1)$, we have $f \circ X \in B_1(\gamma)$, so that 
 %
     \begin{equation*}
-    \scalarat \gamma {f \circ X}{D\gamma(0)} = \left. \derivby t \expectat {\gamma(t)} {f \circ X} \right|_{t=0} = \left. \derivby t \expectat {X_{\#}\gamma(t)} {f} \right|_{t=0} = \left. \derivby t \expectat {\mu_1} {f} \right|_{t=0} = 0 \ .
+    \scalarat \gamma {f \circ X}{\velocity\gamma(0)} = \left. \derivby t \expectat {\gamma(t)} {f \circ X} \right|_{t=0} = \left. \derivby t \expectat {X_{\#}\gamma(t)} {f} \right|_{t=0} = \left. \derivby t \expectat {\gamma_1} {f} \right|_{t=0} = 0 \ .
     \end{equation*}
 %
-Same in the other margin.
-  \item Given $V \in B_{12}(\gamma)$ there exist an open interval I around 0 such that $I \ni t \mapsto \gamma(t) = (1+tV)\gamma$ is a regular curve in $\Gamma^\circ(\mu_1,\mu_2) \subset \Delta^\circ(\Omega)$. It is indeed a curve in $\Delta^\circ(\Omega)$ because $\sum_{x,y} \gamma(x,y)(1+tV(x,y)) = \expectat \gamma {1+tV} = 1$ and because $\gamma(x,y)(1+tV(x,y)) > 0$ for all $x,y$, if $t \in ]- (\max V)^{-1}, - (\min V)^{-1}[$.  The score exists and is computed as
+Same argument in the other margin. \qed
+
+\paragraph{$\bm\models$} \emph{Given any interaction $v \in B_{12}(\gamma)$, the curve $t \mapsto \gamma(t) = (1+tv)\gamma$ stays in $\Gamma^\circ(\gamma_1,\gamma_2)$ for $t$ in a neighborhood of 0 and $v = \velocity\gamma(0)$.} 
+
+Given $V \in B_{12}(\gamma)$ there exist an open interval I around 0 such that $I \ni t \mapsto \gamma(t) = (1+tV)\gamma$ is a regular curve in $\Gamma^\circ(\mu_1,\mu_2) \subset \Delta^\circ(\Omega)$. It is indeed a curve in $\Delta^\circ(\Omega)$ because $\sum_{x,y} \gamma(x,y)(1+tV(x,y)) = \expectat \gamma {1+tV} = 1$ and because $\gamma(x,y)(1+tV(x,y)) > 0$ for all $x,y$, if $t \in ]- (\max V)^{-1}, - (\min V)^{-1}[$.  The score exists and is computed as
 %
 \    \begin{equation*}
      D\gamma(0) = \left.  \derivby t \logof{(1+tV)\gamma} \right|_{t=0} = \left. \frac V {1+tV} \right|_{t=0} = V \ .
@@ -344,9 +343,8 @@ Finally, let us compute the margins of $(x,y) \mapsto \gamma(x,y;t) = (1+tV(x,y)
   \sum_y (1+tV(x,y))\gamma(x,y) = X_\# \gamma(x) + t \sum_y V(x,y)\gamma(x,y) = \\ \mu_1(x) + t \expectat \gamma {e_x\circ X V} = \mu_1(x) \ ,
 \end{multline*}
 %
-where $e_x \colon \Omega_1 \to \reals$ is the indicator function of $x$. Same for the other margin.
-  \end{enumerate}
-\end{proof}
+where $e_x \colon \Omega_1 \to \reals$ is the indicator function of $x$. Same for the other margin.\qed
+
 %
 \begin{definition}
 The \emph{Fr\'echet bundle}\footnote{Any better name?} with margins $\mu_1$ and $\mu_2$ is the sub statistical bundle
