@@ -32,8 +32,8 @@
 
 \begin{document}
 %
-\title{Gradient flow to the Kantorovich coupling\thanks{The author is
-    supported by de Castro Statistics and Collegio Carlo Alberto.}}
+\title{Statistical bundle of the transport model\thanks{The author is
+    supported by de Castro Statistics, Collegio Carlo Alberto. He is a member of INDAM-GNAMPA.}}
 %
 %\titlerunning{Abbreviated paper title}
 % If the paper title is too long for the running head, you can set
@@ -53,81 +53,95 @@
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-We discuss the statistical bundle of the Kantorovich transport model. We give a formulation of the optimal transport problem as a gradient flow problem for the Kantorovich cost. We assume a finite sample space. Thos is a preliminary version. No primary references are given.
-\keywords{Gradient flow \and Kantorovich optimal transport \and
-  Statistical bundle.}
+  We discuss the statistical bundle of the Kantorovich transport
+  model. We assume a finite sample space. We discuss the relation of
+  the splitting of the general statistical bundle both with the
+  gradient flow of the Kantorovich cost and with the statistics of
+  exponential additive models. This preliminary version is submitted
+  to GSI21 as an extended abstract. For this reason, no primary references are
+  given.  \keywords{Statistical bundle \and Kantorovich transport
+    model \and Gradient flow \and Exponential additive model}
 \end{abstract}
-%
-%
-%
+
 Consider a product finite sample space
-$\Omega=\Omega_1 \times \Omega_2$ and marginal mappings
+$\Omega=\Omega_1 \times \Omega_2$ and the marginal mappings
 $X \colon \Omega \to \Omega_1$, $Y \colon \Omega \to \Omega_2$. If
 $\gamma$ is a probability function on $\Omega$, we denote by
 $\gamma_1$ and $\gamma_2$ the image probability functions on
-$\Omega_1$ and $\Omega_2$, respectively. We denote by $L(\Omega)$,
-$L(\Omega_1)$ and $L(\Omega_2)$ the spaces of real random variables
-and by $L_0(\gamma)$, $L_0(\gamma_1)$ and $L_0(\gamma_2)$ the spaces
-of random variables which are centered for the given probability
-function.
+$\Omega_1$ and $\Omega_2$, respectively. We denote by $L(\gamma)$,
+$L(\gamma_1)$ and $L(\gamma_2)$ the Euclidean spaces of real random
+variables and by $L_0(\gamma)$, $L_0(\gamma_1)$ and $L_0(\gamma_2)$
+the spaces of random variables which are centered for the given
+probability function.
 
 We use the non-parametric version of the Information Geometry of the
-finite sample space as described in
-\cite{pistone:2020-NPCS,pistone:2018lagrange,chirco|malago|pistone:2020-arXiv:2009.09431}. In
-this setup, $\Delta^\circ(\Omega)$ is the interior of the probability
-simplex and $S = S\Delta^\circ(\Omega)$ is the \emph{statistical
-  bundle}, that is, the set of all couples $(\gamma,u)$ with
+finite sample space described in the tutorial \cite{pistone:2020-NPCS}
+and applied in \cite{pistone|rogantin:2015.1502.06718}
+\cite{pistone:2018lagrange},
+\cite{chirco|malago|pistone:2020-arXiv:2009.09431}. In this setup,
+$\Delta^\circ(\Omega)$ is the interior of the probability simplex and
+$S = S\Delta^\circ(\Omega)$ is the \emph{statistical bundle}, that is,
+the set of all couples $(\gamma,u)$ with
 $\gamma \in \Delta^\circ(\Omega)$ and $u$ a random variable such that
-$\expectat \mu u=0$. For each smooth curve
+$\expectat \gamma u=0$. For each smooth curve
 $t \mapsto \gamma(t) \in \Delta^\circ(\Omega)$ the \emph{velocity}
 $\velocity \gamma(t) = \derivby t \log \gamma(t)$ is characterised by
 \begin{equation}
   \label{eq:1}
-  \derivby t \expectat {\gamma(t)} u = \scalarat {\gamma(t)} {\velocity
-  \gamma(t)} u \ .
+  \derivby t \expectat {\gamma(t)} u = \scalarat {\gamma(t)} {u - \expectat {\gamma(t)} u} {\velocity
+  \gamma(t)} \ .
 \end{equation}
+The mapping $\gamma \mapsto u - \expectat \gamma u$ is the
+\emph{gradient} of $\gamma \mapsto U(\gamma) = \expectat \gamma u$
 
 On a sub-manifold, each fiber $S_\gamma$ of the
 statistical bundle splits to define a proper sub-statistical bundle. 
-
 We are interested in the sub-manifold of tranport plans. Let be given
-$\mu_1 \in \Delta^\circ(\Omega_1)$ and $\mu_2 \in
-\Delta^\circ(\Omega_2)$. The \emph{transport plan model} with margins $\mu_1$ and $\mu_2$ is the statistical model
+$\gamma_1 \in \Delta^\circ(\Omega_1)$ and
+$\gamma_2 \in \Delta^\circ(\Omega_2)$. The \emph{transport model}
+with margins $\gamma_1$ and $\gamma_2$ is the statistical model
 %
   \begin{equation*}
-    \Gamma(\mu_1,\mu_2) = \setof{\gamma \in \Delta(\Omega)}{X_\# \gamma = \mu_1, Y_\# \gamma = \mu_2} \ ,
+    \Gamma(\gamma_1,\gamma_2) = \setof{\gamma \in \Delta(\Omega)}{X_\# \gamma = \gamma_1, Y_\# \gamma = \gamma_2} \ .
   \end{equation*}
 %
-where $\Omega=\Omega_1 \times \Omega_2$. The \emph{open} transport plan is 
+  Without restriction of generality, we assume $\gamma_1$ and
+  $\gamma_2$ to be strictly positive. The \emph{open transport model}
+  is
 %
   \begin{equation*}
-    \Gamma^\circ(\mu_1,\mu_2) = \setof{\gamma \in \Delta^\circ(\Omega)}{X_\# \gamma = \mu_1, Y_\# \gamma = \mu_2} \ .
+    \Gamma^\circ(\gamma_1,\gamma_2) = \setof{\gamma \in \Delta^\circ(\Omega)}{X_\# \gamma = \gamma_1, Y_\# \gamma = \gamma_2} \ .
   \end{equation*}
   %
-
-  Let $t \mapsto \gamma(t)$ be a smooth curve in the open transport
-  plan. \cref{eq:1} with $u = f(X)$ gives
+  Marginalization acts on velocities as a conditional expectation. If
+  $t \mapsto \gamma(t)$ is a smooth curve in the open transport model,
+  then \cref{eq:1} with $u = f(X)$ gives
   \begin{equation*}
-  0 = \derivby t \expectat {\mu_1} f =  \derivby t \expectat
-  {\gamma(t)} {f(X)} = \scalarat {\gamma(t)} {\velocity \gamma(t)}
-  {f(X)} = \scalarat {\mu_1} {{\velocity \gamma(t)}_1} f \ , 
+  0 = \derivby t \expectat {\gamma_1} f =  \derivby t \expectat
+  {\gamma(t)} {f(X)} = \scalarat {\gamma(t)}  {f(X)} {\velocity \gamma(t)}
+  = \scalarat {\gamma_1}  f {{\velocity \gamma(t)}_1} \ , 
   \end{equation*}
 with ${\velocity \gamma(t)}_1(X) = \condexpectat {\gamma(t)} {\velocity
-  \gamma(t)} X$. Similarly for the other margin.
+  \gamma(t)} X$. It follows that
+\begin{equation*}
+  \condexpectat {\gamma(t)} {\velocity
+  \gamma(t)} X = 0 \quad \text{and} \quad \condexpectat {\gamma(t)} {\velocity
+  \gamma(t)} Y = 0 \ .
+\end{equation*}
 
 Let us discuss more in detail the relevant splitting in the language
-of statistical ANOVA. Let $\gamma$ be
+of Analysis of Variance(ANOVA). Let $\gamma$ be
 a probability function on $\Omega$. The linear subspaces of the space
 of random variables $L(\Omega)$ which describe, respectively, the
-$\gamma$-grand-mean, the two \emph{$\gamma$-marginal effects}, and
+\emph{$\gamma$-grand-mean}, the two \emph{$\gamma$-marginal effects}, and
 the \emph{$\gamma$-interactions}, are
 %
 \begin{equation}\label{eq:ANOVA-spaces}
 \begin{aligned}
-  L_0(\gamma) &\sim \reals, \\
-  L_1(\gamma) &= \setof{f\circ X}{f \in L_0(\gamma_1)},\\
-  L_2(\gamma) &= \setof{f\circ Y}{f \in L_0(\gamma_2)},\\
-  L_{12}(\gamma) &= (L_0(\gamma) + L_1(\gamma) + L_2(\gamma))^\perp,
+  B_0(\gamma) &\sim \reals, \\
+  B_1(\gamma) &= \setof{f\circ X}{f \in L_0(\gamma_1)},\\
+  B_2(\gamma) &= \setof{f\circ Y}{f \in L_0(\gamma_2)},\\
+  B_{12}(\gamma) &= (B_0(\gamma) + B_1(\gamma) + B_2(\gamma))^\perp,
 \end{aligned}
 \end{equation}
 %
@@ -137,16 +151,16 @@ where orthogonality is computed in the $\gamma$ weight, that is in the scalar pr
   (u,v) \mapsto \scalarat \gamma u v = \sum_{\omega\in\Omega}u(\omega)v(\omega)
   \gamma(\omega)\end{equation*}
 
-Each element of the space $L_0(\gamma) + L_1(\gamma) + L_2(\gamma)$
+Each element of the space $B_0(\gamma) + B_1(\gamma) + B_2(\gamma)$
 has the form $u = u_0 + f_1(X) + f_2(Y)$, where
 $u_0 = \expectat \gamma u$ and $f_1,f_2$ are uniquely defined. More
 precisely, we have the following.
 
-\paragraph{$\bm\models$} \textit{There exist a splitting
+\paragraph{$\bm\models$} \textit{For each $\gamma \in \Delta(\Omega)$ there exist a splitting
 %
 \begin{equation*}
 %
-  L(\gamma)) = \reals \oplus \left(L_1(\gamma) + L_2(\gamma)\right) \oplus L_{12}(\gamma) \ . 
+  L(\gamma)) = \reals \oplus \left(B_1(\gamma) + B_2(\gamma)\right) \oplus B_{12}(\gamma) \ . 
 \end{equation*}
 %
 Namely, the splitting of each $u \in L(\gamma)$ is
@@ -158,9 +172,15 @@ Namely, the splitting of each $u \in L(\gamma)$ is
 %
 where $u_0=\expectat \gamma u$ and $u_1+u_2$ is the
 $\gamma$-orthogonal projection of $u$ unto
-$L_1(\gamma) + L_2(\gamma)$.}
+$B_1(\gamma) + B_2(\gamma)$.}
 
-Each couple of spaces in \cref{eq:ANOVA-spaces} has trivial intersection $\set{0}$, hence the splitting of $f \in L(\Omega)$ into $f = f_0 + f_1 + f_2 + f_{1,2}$, with $f_0 \in \reals$, $f_1 \in L_1(\gamma)$, $f_2 \in L_2(\gamma)$, $f_{12} \in L_{12}(\gamma)$ is unique. As $\expectat \gamma f = f_0$ and $L_0(\gamma)$ is orthogonal to $L_1(\gamma)+L_2(\gamma)$, then $f_{12}$ is the orthogonal projection of $f - \expectat \gamma f$ unto $(L_1(\gamma)+L_2(\gamma))^\perp$, while $f_1(\gamma)+f_2(\gamma)$ is the orthogonal projection of $f$ onto $L_1(\gamma)+L_2(\gamma)$.
+Each couple of spaces in \cref{eq:ANOVA-spaces} has trivial
+intersection $\set{0}$, hence the splitting of $u \in L(\Omega)$ into
+is unique. As $\expectat \gamma u = u_0$ and $B_0(\gamma)$ is
+orthogonal to $B_1(\gamma)+B_2(\gamma)$, then $u_{12}$ is the
+orthogonal projection of $u - \expectat \gamma u$ unto
+$(B_1(\gamma)+B_2(\gamma))^\perp$, while $f_1(\gamma)+f_2(\gamma)$ is
+the orthogonal projection of $u$ onto $B_1(\gamma)+B_2(\gamma)$.
 
 \paragraph{$\bm\models$}\emph{The terms $u_1$ and $u_2$ in Eq. \cref{eq:ANOVA} are characterized by the equations
 %
@@ -173,35 +193,35 @@ Each couple of spaces in \cref{eq:ANOVA-spaces} has trivial intersection $\set{0
 %
 \end{equation}}
 
-By definition, $(f - f_0) - (f_1 + f_2)$ is $\gamma$-orthogonal to each $g_1+g_2 \in L_1(\gamma)\oplus L_2(\gamma)$ i.e., to each $g_1 \in L_1(\gamma)$ and each $g_2 \in L_2(\gamma)$. The orthogonal projection in such a case is the conditional expectation,
+By definition, $(u - u_0) - (u_1 + u_2)$ is $\gamma$-orthogonal to each $g_1+g_2 \in B_1(\gamma)\oplus B_2(\gamma)$ i.e., to each $g_1 \in B_1(\gamma)$ and each $g_2 \in B_2(\gamma)$. The orthogonal projection in such a case is the conditional expectation,
 %
   \begin{align*}
-    0 &= \condexpectat \gamma {(f-f_0) - (f_1+f_2)}{X}  \ , \\
-   0 &= \condexpectat \gamma {(f-f_0) - (f_1+f_2)}{Y} \ .
+    0 &= \condexpectat \gamma {(u-u_0) - (u_1+u_2)}{X}  \ , \\
+   0 &= \condexpectat \gamma {(u-u_0) - (u_1+u_2)}{Y} \ .
   \end{align*}
   %
 
 Expressing the conditional expectations with respect to the uniform distribution,
 %
   \begin{align*}
-    0 &= \condexpectat 0 {\gamma[(f-f_0) - (f_1+f_2)]}{X} \ , \\
-   0 &= \condexpectat 0 {\gamma[(f-f_0) - (f_1+f_2)]}{Y} \ ,
+    0 &= \condexpectat 0 {\gamma[(u-u_0) - (u_1+u_2)]}{X} \ , \\
+   0 &= \condexpectat 0 {\gamma[(u-u_0) - (u_1+u_2)]}{Y} \ ,
   \end{align*}
   % 
 that is
 %
   \begin{align*}
-  \condexpectat 0 {\gamma(f-f_0)} X =  \condexpectat 0 {\gamma} X f_1 + \condexpectat 0 {\gamma f_2} X \ , \\
-    \condexpectat 0 {\gamma(f-f_0)} Y =  \condexpectat 0 {\gamma f_1} X  + \condexpectat 0 {\gamma} Y f_2\ .
+  \condexpectat 0 {\gamma(u-u_0)} X =  \condexpectat 0 {\gamma} X u_1 + \condexpectat 0 {\gamma u_2} X \ , \\
+    \condexpectat 0 {\gamma(u-u_0)} Y =  \condexpectat 0 {\gamma u_1} X  + \condexpectat 0 {\gamma} Y u_2\ .
   \end{align*}
   % 
 
-The ANOVA decomposition proves the existence of the splitting and suggests a computational tool. Assume zero mean, $f_0=0$. The following $(n_1+n_2)\times(n_1+n_2)$ linear system holds:
+The ANOVA decomposition proves the existence of the splitting and suggests a matric computation. Assume zero mean, $u_0=0$. The following $(n_1+n_2)\times(n_1+n_2)$ linear system holds:
 %
 \begin{equation*}
 \begin{cases}
-  \sum_{y \in \Omega_2} \gamma(x,y)f(x,y) &= \gamma_1(x) f_1(x) + \sum_{y \in \Omega_2} \gamma(x,y) f_2(y) , \quad x \in \Omega_1 \\
-  \sum_{x \in \Omega_1} \gamma(x,y)f(x,y) &= \sum_{x \in \Omega_1} \gamma(x,y) f_1(x)  + \gamma_2(y)f_2(y) , \quad y \in \Omega_2
+  \sum_{y \in \Omega_2} \gamma(x,y)u(x,y) &= \gamma_1(x) u_1(x) + \sum_{y \in \Omega_2} \gamma(x,y) u_2(y) , \quad x \in \Omega_1 \\
+  \sum_{x \in \Omega_1} \gamma(x,y)u(x,y) &= \sum_{x \in \Omega_1} \gamma(x,y) u_1(x)  + \gamma_2(y)u_2(y) , \quad y \in \Omega_2
 \end{cases}
 \end{equation*}
 %
@@ -210,29 +230,37 @@ Equivalently, using the conditional probabilities $\gamma_{2|1}(y|x) \gamma_1(x)
 %
 \begin{equation*}
 \begin{cases}
-  \sum_{y \in \Omega_2} \gamma_{2|1}(y|x)f(x,y) &= f_1(x) + \sum_{y \in \Omega_2} \gamma_{2|1}(y|x) f_2(y) , \quad x \in \Omega_1 \\
-  \sum_{x \in \Omega_1} \gamma_{1|2}(x|y)f(x,y) &= \sum_{x \in \Omega_1} \gamma_{1|2}(x|y) f_1(x)  + f_2(y) , \quad y \in \Omega_2
+  \sum_{y \in \Omega_2} \gamma_{2|1}(y|x)u(x,y) &= u_1(x) + \sum_{y \in \Omega_2} \gamma_{2|1}(y|x) u_2(y) , \quad x \in \Omega_1 \\
+  \sum_{x \in \Omega_1} \gamma_{1|2}(x|y)u(x,y) &= \sum_{x \in \Omega_1} \gamma_{1|2}(x|y) u_1(x)  + u_2(y) , \quad y \in \Omega_2
 \end{cases}
 \end{equation*}
 %
 
-We write the previous system in matrix form with blocks $\Gamma_{2|1} = [\gamma_{2|1}(y|x)]_{x \in \Omega_1, y \in \Omega_2} \in \reals^{n_1 \times n_2}$ and $\Gamma_{1|2} = [\gamma_{1|2}(x|y)]_{x \in \Omega_1, y \in \Omega_2} \in \reals^{n_1 \times n_2}$, $\bm f_1 = (f_1(x) | x \in \Omega_1)$ and $\bm f_2 = (f_2(x) | x \in \Omega_2)$, $\bm f_{2|1} = (\sum_{y \in \Omega_2} f(x,y)\gamma_{2|1}(y|x) | x \in \Omega_1)$ and $\bm f_{1|2} = (\sum_{x\in\Omega_1} f(x,y)\gamma_{1|2}(x|y) | x \in \Omega_2)$, as 
-
+We write the previous system in matrix form with blocks
+\begin{gather*}
+  \Gamma_{2|1} = [\gamma_{2|1}(y|x)]_{x \in \Omega_1, y \in \Omega_2} \in \reals^{n_1 \times n_2} \\
+  \Gamma_{1|2} = [\gamma_{1|2}(x|y)]_{x \in \Omega_1, y \in \Omega_2} \in \reals^{n_1 \times n_2} \\
+  \bm u_1 = (u_1(x) | x \in \Omega_1) \\
+  \bm u_2 = (u_2(x) | x \in \Omega_2) \\
+  \bm u_{2|1} = (\sum_{y \in \Omega_2} u(x,y)\gamma_{2|1}(y|x) | x \in \Omega_1) \\
+  \bm u_{1|2} = (\sum_{x\in\Omega_1} u(x,y)\gamma_{1|2}(x|y) | x \in \Omega_2) \ ,
+\end{gather*}
+as 
 \begin{equation}
 \label{eq:block}
   \begin{bmatrix}
     I_{n_1} & \Gamma_{2|1} \\ \Gamma_{1|2}^T & I_{n_2}
   \end{bmatrix}
   \begin{bmatrix}
-    \bm f_1 \\ \bm f_2
+    \bm u_1 \\ \bm u_2
   \end{bmatrix}
 =
 \begin{bmatrix}
-  \bm f_{2|1} \\ \bm f_{1|2}
+  \bm u_{2|1} \\ \bm u_{1|2}
 \end{bmatrix}
 \end{equation}
 
-The block matrix is not globally invertible because the kernel contains the vector $\bm 1 _{n_1} \oplus \bm 1_{n_2}$, hence we look for a generalised inverse of the block matrix  which  exists uniquely because of the interpretation as the orthogonal projection of $f \in L(\Omega) \ominus L_0(\gamma)$ onto $L_1(\gamma)\oplus L_2(\gamma)$. Generalised inverses of the Shur complements $(I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T)$ and $(I_{n_2}-\Gamma_{1|2}^T\Gamma_{2|1})$, if available, suggests the following generalised block inversion formula:
+The block matrix is not globally invertible because the kernel contains the vector $\bm 1 _{n_1} \oplus \bm 1_{n_2}$, hence we look for a generalised inverse of the block matrix  which  exists uniquely because of the interpretation as the orthogonal projection of $f \in L(\Omega) \ominus L_0(\gamma)$ onto $B_1(\gamma)\oplus B_2(\gamma)$. Generalised inverses of the Shur complements $(I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T)$ and $(I_{n_2}-\Gamma_{1|2}^T\Gamma_{2|1})$, if available, suggests the following generalised block inversion formula:
 %
 \begin{equation}
 \label{eq:blocksolve}
@@ -307,7 +335,17 @@ Similarly, for $Q = \Gamma_{2|1}^T\Gamma_{1|2}$, we have
 %
 It follows that \cref{eq:block} is solved with \cref{eq:blocksolve}.\qed
 
-We now apply the ANOVA decomposition to the study of the open transport model geometry as a sub-bundle of the statistical bundle $S\Delta^\circ(\Omega)$. Recall that the transport model $\Gamma(\gamma_1,\gamma_2)$ is a closed convex subset of $\Delta(\Omega)$. We assume the marginal probability function $\gamma_1$ and $\gamma_2$ to be strictly positive. The algebraic interior of the transport model is the open transport model $\Gamma^\circ(\gamma_1,\gamma_2) \subset \Delta^\circ(\Omega)$. The interior is never empty as it contains  contains $\gamma_1 \otimes \gamma_2$. The sub[-bundle is characterized by the following two statements.
+We now apply the ANOVA decomposition to the study of the open
+transport model geometry as a sub-bundle of the statistical bundle
+$S\Delta^\circ(\Omega)$. Recall that the transport model
+$\Gamma(\gamma_1,\gamma_2)$ is a closed convex subset of
+$\Delta(\Omega)$. We assume the marginal probability function
+$\gamma_1$ and $\gamma_2$ to be strictly positive. The algebraic
+interior of the transport model is the open transport model
+$\Gamma^\circ(\gamma_1,\gamma_2) \subset \Delta^\circ(\Omega)$. The
+interior is never empty as it contains contains
+$\gamma_1 \otimes \gamma_2$. The sub-bundle is characterized by the
+following two statements.
 
 \paragraph{$\bm\models$} \emph{Let $t \mapsto \gamma(t) \in \Gamma^\circ(\gamma_1,\gamma_2)$ be a smooth curve with $\gamma(0)=\gamma$. Let $B_\gamma = S_\gamma \Delta^\circ(\Omega)$ be the fiber at $\gamma$ of the statistical bundle. Write the ANOVA decomposition as
   \begin{equation*}
@@ -347,21 +385,46 @@ In conclusion, we define the \emph{transport model bundle} with margins $\gamma_
   S\Gamma^\circ(\gamma_1,\gamma_2) = \setof{(\gamma,v)}{\gamma\in\Gamma^\circ(\gamma_1,\gamma_2),v \in (S_\gamma\Gamma^\circ(\mu_1,\mu_2))_{12}(\gamma)} \ .
 \end{equation}
 
-\begin{remark}
-In the statistical bundle setup, at each $\gamma$ there is a special chart derived from the exponential representation. Here, one should compute the natural chart induced by the sub-statistical bundle, $s_\gamma \colon \Gamma^\circ(\gamma_1,\gamma_2) \to B_{12}(\gamma)$, together with the change-of-coordinate map. Also, parallel transports should be computed.
-\end{remark}
+In the statistical bundle setup, at each $p \in \Delta^\circ(\Omega)$ there is a chart $s_p$ derived from the exponential representation, namely
+\begin{equation*}
+ s_p \colon \Delta^\circ(\Omega) \ni q \mapsto \log \frac q p - \expectat \gamma {\log \frac q p} = u \in S_p\Delta^\circ(\Omega) \ ,
+\end{equation*}
+so that
+\begin{equation*}
+  u \mapsto \euler^{u - K_p(u)} \cdot p \ , \quad K_p(u) = \log \expectat p {\euler^u} \ .
+\end{equation*}
+The sub-manifold of the transport model is flat in the mixture geometry and there is no simple expession of the exponential coordinate. A couple of dual parallel transports between the fibers can be computed as
+\begin{gather*}
+  B^*_{12}(\gamma) \ni \eta \mapsto \frac \gamma {\bar\gamma} \eta \in B^*_{1,2}(\bar\gamma) \\
+  B{12}(\bar\gamma) \ni u \mapsto \Pi_{12}(\gamma) u \in B_{1,2}(\gamma) 
+\end{gather*}
+where $^*$ denotes the dual and $\Pi_{12}(\gamma)$ is the
+$\gamma$-orthogonal projection to $B_{12}(\gamma)$. We do not further
+discuss these topics here.
 
-\begin{remark}[Binary case] 
-%
-The simplest non-trivial case is $n_1=n_2=2$. Let $\Omega_1=\Omega_2=\set{+1,-1}$. Any function on $\Omega$ has the pseudo-Boolean form $f(x,y)=a_0+a_1 x + a_2 y + a_{12} xy$. In particular a probability has the form $\gamma(x,y) = \frac14(1+b_1x+b_2y+b_{12}xy)$ with $\gamma_1(x) = X_{\#}\gamma (x)= \frac12(1+b_1x)$, $\gamma_2(y) = Y_\# \gamma(y) = \frac12(1+b_2y)$. Given $\bar b_1, \bar b_2 \in ]-1,+1[$ to fix the margins, the plan is given by the 1 parameter family 
+The simplest non-trivial case is $n_1=n_2=2$. Let
+$\Omega_1=\Omega_2=\set{+1,-1}$. Any function $u$ on $\Omega$ has the
+pseudo-Boolean form $u(x,y)=a_0+a_1 x + a_2 y + a_{12} xy$. In
+particular a probability has the form
+$\gamma(x,y) = \frac14(1+b_1x+b_2y+b_{12}xy)$ with
+$\gamma_1(x) = X_{\#}\gamma (x)= \frac12(1+b_1x)$,
+$\gamma_2(y) = Y_\# \gamma(y) = \frac12(1+b_2y)$. Given
+$\bar b_1, \bar b_2 \in ]-1,+1[$ to fix the margins, the plan is given
+by the 1 parameter family
 %
   \begin{equation*}
     \gamma(x,y;\theta) = \frac14(1+\bar b_1x+\bar b_2y+\theta xy), \quad -1 + \avalof{\bar b_1+\bar b_2} < \theta < 1 - \avalof{\bar b_1 - \bar b_2} \ .
   \end{equation*}
-All the computations related to the splitting can be performed explicitely using the algebraic tools of \cite{fontana|pistone|rogantin:2000}. In fact, the algebraic tool works in the general case.  
-\end{remark}
+  All the computations related to the splitting can be performed
+  explicitely using the algebraic tools of polynomial algebra,
+  see\cite{fontana|pistone|rogantin:2000}. In fact, the algebraic tool
+  works in the general case, see \cite{pistone|rogantin:2008-jspi-1}.
 
-Let us discuss the optimal transport problem in the framework of the transport model bundle of  \cref{eq:2}. Let be given a cost function $c \colon \Omega_1 \times \Omega_2 \to \reals$ and define the expected cost function $C \colon \SimO \ni \gamma \mapsto \expectat \gamma c$.
+  Let us discuss the optimal transport problem in the framework of the
+  transport model bundle of \cref{eq:2}. Let be given a cost function
+  $c \colon \Omega_1 \times \Omega_2 \to \reals$ and define the
+  expected cost function
+  $C \colon \Delta^\circ(\Omega)\ni \gamma \mapsto \expectat \gamma c$.
 
 \paragraph{$\bm \models$}  \emph{The function $\gamma \mapsto C(\gamma)$ restricted to the open transport model $\Gamma^\circ(\mu_1,\mu_2)$ has statistical gradient in $S\Gamma^\circ(\mu_1,\mu_2)$ given by
 %
@@ -385,7 +448,7 @@ It follows that the equation of the \emph{gradient flow of $C$} is
   \velocity \gamma = - \left(c - c_{0,\gamma} - c_{1,\gamma} - c_{2,\gamma}\right) \ .
 \end{equation*}
 
-\begin{remark}[Final comments] We expect any solution $t \mapsto \gamma(t)$ of the gradient flow to converge to a coupling $\bar\gamma = \lim_{t \to \infty} \gamma(t) \in \Delta(\Omega)$ such that $\expectat {\bar\gamma} c$ is the value of the Kantorovich optimal transport problem,
+We expect any solution $t \mapsto \gamma(t)$ of the gradient flow to converge to a coupling $\bar\gamma = \lim_{t \to \infty} \gamma(t) \in \Delta(\Omega)$ such that $\expectat {\bar\gamma} c$ is the value of the Kantorovich optimal transport problem,
 %
 \begin{equation*}
   \expectat {\bar\gamma} c = \min \setof{\expectat \gamma c}{ \gamma \in \Gamma(\gamma_1,\gamma_2)} \ .
@@ -397,14 +460,15 @@ Notice that the extension of the gradient in \cref{eq:gradient} to $\Delta(\Omeg
   c = c_{0,\widehat \gamma} + c_{1,\widehat \gamma} + c_{2,\widehat\gamma}
 \end{equation*}
 %
-on $\suppof{\widehat\gamma}$. This should be compared to the property of the optimal solutions of the Kantorovich problem.
+on $\suppof{\widehat\gamma}$. This should be compared with the
+properties of the optimal solutions of the Kantorovich problem, see
+\cite{montrucchio|pistone:2019-arxiv:1905.07547},
+\cite{pistone|rapallo|rogantin:2021}.
 
-The approach to the Kantorovich problem we have outlined is counter-intuitive, in the sense we are using the exponential geometry of the statistical manifold to study a problem associated with a model which is flat in the mixture geometry.
-\end{remark}
+As a final remark, we observe that the splitting of the statistical bundle suggests that each $\gamma \in \Delta(\Omega_1\times\Omega_2)$ stays at the intersection of two orthogonal manifolds, namely, the tranport model with the margins of $\gamma$ and the additive exponential model $\euler^{u_1+u_2 - K_\gamma(u_1 + u_2)} \cdot \gamma$, $u_1 \in B_1(\gamma)$ and $u_2 \in B_2(\gamma)$.
 
-\begin{remark}[Acknowledgments]
-We thank Luigi Malag\`o and Luigi Montrucchio for their helful suggestions during the development of the present note. The author is supported by de Castro Statistics, Collegio Carlo Alberto, Torino, Italy. He is a member of INDAM-GNAMPA.   
-\end{remark}
+\paragraph{Acknowledgments}
+The author thanks Luigi Malag\`o and Luigi Montrucchio for their helful suggestions during the development of the present note.
 
 % \subsection{A Subsection Sample}
 % Please note that the first paragraph of a section or subsection is
