@@ -63,73 +63,26 @@ variables with the given weight, and by $L^2_0(\gamma)$, $L^2_0(\gamma_1)$ and $
 the spaces of random variables which are centered for the given
 probability function.
 
-We use differential equations on the vector bundle defined in a non-parametric version of Information Geometry of the
-finite sample space. See the tutorial \cite{pistone:2020-NPCS} and the applications in \cite{pistone|rogantin:2015.1502.06718}
+We plan using evolution equations on the vector bundle defined in the non-parametric Information Geometry of the open probability simplex of the sample space $\Omega$. See the tutorial \cite{pistone:2020-NPCS} and the applications in \cite{pistone|rogantin:2015.1502.06718}
 \cite{pistone:2018lagrange},
-\cite{chirco|malago|pistone:2020-arXiv:2009.09431}. 
+\cite{chirco|malago|pistone:2020-arXiv:2009.09431}. A short review is offered below.
 
-If $\Delta^\circ(\Omega)$ is the interior of the probability simplex, we define the \emph{statistical bundle}
-$S\Delta^\circ(\Omega)$ to be the set of all couples $(\gamma,u)$ with
-$\gamma \in \Delta^\circ(\Omega)$ and $u$ a random variable such that
-$\expectat \gamma u = 0$. For each smooth curve
-$t \mapsto \gamma(t) \in \Delta^\circ(\Omega)$ the \emph{velocity} is 
-$\velocity \gamma(t) = \derivby t \log \gamma(t)$. Notice that $t \mapsto (\gamma(t),\velocity \gamma(t))$ is a curve in the statistical bundle. For each section $F$ we define the \emph{differential equation} $\velocity \gamma = F(\gamma)$. We have
-\begin{equation} 
-\label{eq:1}
-  \derivby t \expectat {\gamma(t)} u = \scalarat {\gamma(t)} {u - \expectat {\gamma(t)} u} {\velocity
-  \gamma(t)} \ .
-\end{equation}
-The mapping $\gamma \mapsto u - \expectat \gamma u$ is the
-\emph{gradient mapping} of $\gamma \mapsto \expectat \gamma u$.
+If $\Delta^\circ(\Omega)$ is the open probability simplex, we define the \emph{statistical bundle} $S\Delta^\circ(\Omega)$ to be the set of all couples $(\gamma,u)$ with $\gamma \in \Delta^\circ(\Omega)$ and $u$ a random variable such that $\expectat \gamma u = 0$. The fiber at $\gamma$ is $S_\gamma\Delta^\circ(\Omega)= L^2_0(\Omega)$. The IG dualistic structure is taken into account by saying that the dual statistical bundle $S^*\Delta^\circ(\Omega)$ has fibers $L^2_0(\gamma)^* = L^2_0(\gamma)$.
 
-On a sub-manifold of $\Delta^\circ(\Omega)$, each fiber $S_\gamma$ of the
-statistical bundle splits to define the proper sub-statistical bundle. 
-We are interested in the sub-manifold of transport plans, see for example, \cite{santambrogio:2015otap}. Let be given
-$\gamma_1 \in \Delta^\circ(\Omega_1)$ and
-$\gamma_2 \in \Delta^\circ(\Omega_2)$. The \emph{transport model}
-with margins $\gamma_1$ and $\gamma_2$ is the statistical model
-%
-  \begin{equation*}
-    \Gamma(\gamma_1,\gamma_2) = \setof{\gamma \in \Delta(\Omega)}{X_\# \gamma = \gamma_1, Y_\# \gamma = \gamma_2} \ .
-  \end{equation*}
-%
-  Without restriction of generality, we assume $\gamma_1$ and
-  $\gamma_2$ to be strictly positive. The \emph{open transport model}
-  is
-%
-  \begin{equation*}
-    \Gamma^\circ(\gamma_1,\gamma_2) = \setof{\gamma \in \Delta^\circ(\Omega)}{X_\# \gamma = \gamma_1, Y_\# \gamma = \gamma_2} \ .
-  \end{equation*}
-  %
-  Marginalization acts on velocities as a conditional expectation. If
-  $t \mapsto \gamma(t)$ is a smooth curve in the open transport model,
-  then \cref{eq:1} with $u = f(X)$ gives
-  \begin{equation*}
-  0 = \derivby t \expectat {\gamma_1} f =  \derivby t \expectat
-  {\gamma(t)} {f(X)} = \scalarat {\gamma(t)}  {f(X)} {\velocity \gamma(t)}
-  = \scalarat {\gamma_1}  f {{\velocity \gamma(t)}_1} \ , 
-  \end{equation*}
-with ${\velocity \gamma(t)}_1(X) = \condexpectat {\gamma(t)} {\velocity
-  \gamma(t)} X$. Similarly on the other projection. It follows that $\condexpectat {\gamma(t)} {\velocity
-  \gamma(t)} X = 0$ and $\condexpectat {\gamma(t)} {\velocity
-  \gamma(t)} Y = 0$. This suggests a characterization of the velocity bundle of the open transport model.
+For each smooth curve $t \mapsto \gamma(t) \in \Delta^\circ(\Omega)$ the \emph{velocity} is $\velocity \gamma(t) = \derivby t \log \gamma(t)$. We look at $t \mapsto (\gamma(t),\velocity \gamma(t))$ as a curve in the dual statistical bundle. In the duality we have
+\begin{equation} \label{eq:1} \derivby t \expectat {\gamma(t)} u = \scalarat {\gamma(t)} {u - \expectat {\gamma(t)} u} {\velocity \gamma(t)} \ . \end{equation}
+The mapping $\gamma \mapsto u - \expectat \gamma u$ is the \emph{gradient mapping} of $\gamma \mapsto \expectat \gamma u$.
+For each section $F$ we define the \emph{evolution equation} to be $\velocity \gamma = F(\gamma)$. By writing $\velocity \gamma = \dot \gamma/\gamma$, we see that the evolution equation is equivalent to the Ordinary Differential Equation (ODE) $\dot \gamma = \gamma F(\gamma)$.
 
-Let us discuss more in detail the relevant splitting in the language
-of Analysis of Variance (ANOVA). The linear sub-spaces of $L^2(\gamma)$ which describe, respectively, the
-\emph{$\gamma$-grand-mean}, the two \emph{$\gamma$-marginal effects}, and the \emph{$\gamma$-interactions}, are
-%
-\begin{equation}\label{eq:ANOVA-spaces}
-\begin{aligned}
-  B_0(\gamma) &\sim \reals, \\
-  B_1(\gamma) &= \setof{f\circ X}{f \in L^2_0(\gamma_1)},\\
-  B_2(\gamma) &= \setof{f\circ Y}{f \in L^2_0(\gamma_2)},\\
-  B_{12}(\gamma) &= (B_0(\gamma) + B_1(\gamma) + B_2(\gamma))^\perp,
-\end{aligned}
-\end{equation}
-%
-where orthogonality is computed in the $\gamma$ weight, that is in the scalar product of $L^2(\gamma)$, $\scalarat \gamma u v = \expectat \gamma {uv}$. Each element of the space $B_0(\gamma) + B_1(\gamma) + B_2(\gamma)$
-has the form $u = u_0 + f_1(X) + f_2(Y)$, where
-$u_0 = \expectat \gamma u$ and $f_1,f_2$ are uniquely defined.
+ 
+On a sub-manifold of $\Delta^\circ(\Omega)$, each fiber $S_\gamma$ of the statistical bundle splits to define the proper sub-statistical bundle. We are interested in the sub-manifold associated to transport plans, see for example, \cite{santambrogio:2015otap}. Let be given $\gamma_1 \in \Delta^\circ(\Omega_1)$ and $\gamma_2 \in \Delta^\circ(\Omega_2)$. The \emph{transport model} with margins $\gamma_1$ and $\gamma_2$ is the statistical model \begin{equation*} \Gamma(\gamma_1,\gamma_2) = \setof{\gamma \in \Delta(\Omega)}{\gamma(\cdot,+) = \gamma_1, \gamma(+,\cdot) = \gamma_2} \ . \end{equation*}
+Without restriction of generality, we assume $\gamma_1$ and $\gamma_2$ to be strictly positive. Our sub-manifold is the \emph{open transport model} \begin{equation*} \Gamma^\circ(\gamma_1,\gamma_2) = \setof{\gamma \in \Delta^\circ(\Omega)}{X_\# \gamma = \gamma_1, Y_\# \gamma = \gamma_2} \ . \end{equation*}
+
+Marginalization acts on velocities as a conditional expectation. If $t \mapsto \gamma(t)$ is a smooth curve in the open transport model, then \cref{eq:1} with $u = f(X)$ gives \begin{equation*} 0 = \derivby t \expectat {\gamma_1} f =  \derivby t \expectat {\gamma(t)} {f(X)} = \scalarat {\gamma(t)}  {f(X)} {\velocity \gamma(t)} = \scalarat {\gamma_1}  f {{\velocity \gamma(t)}_1} \ , \end{equation*} with ${\velocity \gamma(t)}_1(X) = \condexpectat {\gamma(t)} {\velocity \gamma(t)} X$. Similarly on the other projection. It follows that $\condexpectat {\gamma(t)} {\velocity \gamma(t)} X = 0$ and $\condexpectat {\gamma(t)} {\velocity \gamma(t)} Y = 0$. This suggests the characterization of the velocity bundle of the open transport model.
+
+Let us discuss more in detail the relevant splitting in the language of Analysis of Variance (ANOVA). The linear sub-spaces of $L^2(\gamma)$ which describe, respectively, the \emph{$\gamma$-grand-mean}, the two \emph{$\gamma$-marginal effects}, and the \emph{$\gamma$-interactions}, are
+\begin{equation}\label{eq:ANOVA-spaces} \begin{aligned} B_0(\gamma) &\sim \reals, \\ B_1(\gamma) &= \setof{f\circ X}{f \in L^2_0(\gamma_1)},\\ B_2(\gamma) &= \setof{f\circ Y}{f \in L^2_0(\gamma_2)},\\ B_{12}(\gamma) &= (B_0(\gamma) + B_1(\gamma) + B_2(\gamma))^\perp, \end{aligned} \end{equation}
+where the orthogonality is computed in the $\gamma$ weight, that is in the scalar product of $L^2(\gamma)$, $\scalarat \gamma u v = \expectat \gamma {uv}$. Each element of the space $B_0(\gamma) + B_1(\gamma) + B_2(\gamma)$ has the form $u = u_0 + f_1(X) + f_2(Y)$, where $u_0 = \expectat \gamma u$ and $f_1,f_2$ are uniquely defined.
 
 \paragraph{$\bm\diamond$} \textit{For each $\gamma \in \Delta(\Omega)$ there exist a splitting
 %
@@ -149,12 +102,7 @@ where $u_0=\expectat \gamma u$ and $(u_1+u_2)$ is the
 $\gamma$-orthogonal projection of $u$ unto
 $B_1(\gamma) + B_2(\gamma)$.}
 
-Each couple of spaces in \cref{eq:ANOVA-spaces} has trivial
-intersection $\set{0}$, hence the splitting in \cref{eq:ANOVA} is unique. As $\expectat \gamma u = u_0$ and $B_0(\gamma)$ is
-orthogonal to $B_1(\gamma)+B_2(\gamma)$, then $u_{12}$ is the
-orthogonal projection of $u - \expectat \gamma u$ unto
-$(B_1(\gamma)+B_2(\gamma))^\perp$, while $f_1(\gamma)+f_2(\gamma)$ is
-the orthogonal projection of $u$ onto $B_1(\gamma)+B_2(\gamma)$. \qed
+Each couple of spaces in \cref{eq:ANOVA-spaces} has trivial intersection $\set{0}$, hence the splitting in \cref{eq:ANOVA} is unique. As $\expectat \gamma u = u_0$ and $B_0(\gamma)$ is orthogonal to $B_1(\gamma)+B_2(\gamma)$, then $u_{12}$ is the orthogonal projection of $u - \expectat \gamma u$ unto $(B_1(\gamma)+B_2(\gamma))^\perp$, while $f_1(\gamma)+f_2(\gamma)$ is the orthogonal projection of $u$ onto $B_1(\gamma)+B_2(\gamma)$. \qed
 
 Let us derive a system of equations for the simple effects. By definition, $u_{12} = (u - u_0) - (u_1 + u_2)$ is $\gamma$-orthogonal to each $g_1 \in B_1(\gamma)$ and each $g_2 \in B_2(\gamma)$. The orthogonal projections on $B_1(\gamma)$ and $B_2(\gamma)$ are the conditional expectation with respect to $X$ and $Y$, respectively,
 %
@@ -164,40 +112,20 @@ Let us derive a system of equations for the simple effects. By definition, $u_{1
   \end{align*}
   %
 
-Expressing the conditional expectations with respect to the uniform distribution,
-%
-  \begin{align*}
-    0 &= \condexpectat 0 {\gamma[(u-u_0) - (u_1+u_2)]}{X} \ , \\
-   0 &= \condexpectat 0 {\gamma[(u-u_0) - (u_1+u_2)]}{Y} \ ,
-  \end{align*}
-  % 
-that is
-%
-  \begin{align*}
-  \condexpectat 0 {\gamma(u-u_0)} X =  \condexpectat 0 {\gamma} X u_1 + \condexpectat 0 {\gamma u_2} X \ , \\
-    \condexpectat 0 {\gamma(u-u_0)} Y =  \condexpectat 0 {\gamma u_1} X  + \condexpectat 0 {\gamma} Y u_2\ .
-  \end{align*}
-  % 
+Assume zero mean, $u_0=0$. We have the system of equations
+\begin{align*}
+  \condexpectat \gamma u X &=  u_1 + \condexpectat \gamma {u_2} {X} \\
+  \condexpectat \gamma u Y &= \condexpectat \gamma {u_1} {Y} + u_2
+\end{align*}
 
-The ANOVA decomposition proves the existence of the splitting and suggests a matrix computation. Assume zero mean, $u_0=0$. The following $(n_1+n_2)\times(n_1+n_2)$ linear system holds:
-%
-\begin{equation*}
-\begin{cases}
-  \sum_{y \in \Omega_2} \gamma(x,y)u(x,y) &= \gamma_1(x) u_1(x) + \sum_{y \in \Omega_2} \gamma(x,y) u_2(y) , \quad x \in \Omega_1 \\
-  \sum_{x \in \Omega_1} \gamma(x,y)u(x,y) &= \sum_{x \in \Omega_1} \gamma(x,y) u_1(x)  + \gamma_2(y)u_2(y) , \quad y \in \Omega_2
-\end{cases}
-\end{equation*}
-%
-
-Equivalently, using the conditional probabilities $\gamma_{2|1}(y|x) \gamma_1(x) = \gamma_{1|2}(x|y) \gamma_2(y) = \gamma(x,y)$, $x \in \Omega_1$ and $y \in \Omega_2$,
-%
+The ANOVA decomposition proves the existence of $u_1$ and $u_2$.  The following $(n_1+n_2)\times(n_1+n_2)$ linear system holds:
 \begin{equation*}
 \begin{cases}
   \sum_{y \in \Omega_2} \gamma_{2|1}(y|x)u(x,y) &= u_1(x) + \sum_{y \in \Omega_2} \gamma_{2|1}(y|x) u_2(y) , \quad x \in \Omega_1 \\
   \sum_{x \in \Omega_1} \gamma_{1|2}(x|y)u(x,y) &= \sum_{x \in \Omega_1} \gamma_{1|2}(x|y) u_1(x)  + u_2(y) , \quad y \in \Omega_2
 \end{cases}
 \end{equation*}
-%
+where we use the conditional probabilities $\gamma_{2|1}(y|x) \gamma_1(x) = \gamma_{1|2}(x|y) \gamma_2(y) = \gamma(x,y)$, $x \in \Omega_1$ and $y \in \Omega_2$,
 
 We write the previous system in matrix form with blocks
 \begin{gather*}
