@@ -46,53 +46,45 @@
 %
 \maketitle  
 %
-\begin{abstract}
-  We discuss the statistical bundle of the Kantorovich transport
-  model. We assume a finite sample space. We discuss the relation of
-  the splitting of the general statistical bundle both with the
-  gradient flow of the Kantorovich cost and with the statistics of
-  exponential additive models. This preliminary version is submitted
-  to the GSI21 Conference as an extended abstract. For this reason, we do not list primary references in the present version. We announced some of this note results at the ``Computational
-information geometry for image and signal processing'' Conference, Sep 21--25 2015 ICMS, Edinburgh
+\begin{abstract} We derive a gradient flow equation in the Statistical Bundle whose singular points are the optimal plans of a trasportation problem.
+  %We discuss the statistical bundle of the Kantorovich transport model. We assume a finite sample space. We discuss the relation of the splitting of the general statistical bundle both with the gradient flow of the Kantorovich cost and with the statistics of exponential additive models. This preliminary version is submitted to the GSI21 Conference as an extended abstract. For this reason, we do not list primary references in the present version. 
 %
   \keywords{Statistical bundle \and Kantorovich transport
     model \and Gradient flow \and Exponential additive model}
 \end{abstract}
 %
-Consider a product finite sample space
+Consider a product sample space
 $\Omega=\Omega_1 \times \Omega_2$ and the marginal mappings
-$X \colon \Omega \to \Omega_1$, $Y \colon \Omega \to \Omega_2$. If
+$X \colon \Omega \to \Omega_1$, $Y \colon \Omega \to \Omega_2$. Both factors are finite sets, $n_i = \# \Omega_i$. If
 $\gamma$ is a probability function on $\Omega$, we denote by
-$\gamma_1$ and $\gamma_2$ the image probability functions on
-$\Omega_1$ and $\Omega_2$, respectively. We denote by $L(\gamma)$,
-$L(\gamma_1)$ and $L(\gamma_2)$ the Euclidean spaces of real random
-variables and by $L_0(\gamma)$, $L_0(\gamma_1)$ and $L_0(\gamma_2)$
+$\gamma_1$ and $\gamma_2$ the two margins. We denote by $L^2(\gamma)$,
+$L^2(\gamma_1)$ and $L^2(\gamma_2)$ the Euclidean spaces of real random
+variables with the given weight, and by $L^2_0(\gamma)$, $L^2_0(\gamma_1)$ and $L^2_0(\gamma_2)$ 
 the spaces of random variables which are centered for the given
 probability function.
 
-We use the non-parametric version of the Information Geometry of the
-finite sample space described in the tutorial \cite{pistone:2020-NPCS}
-and applied in \cite{pistone|rogantin:2015.1502.06718}
+We use differential equations on the vector bundle defined in a non-parametric version of Information Geometry of the
+finite sample space. See the tutorial \cite{pistone:2020-NPCS} and the applications in \cite{pistone|rogantin:2015.1502.06718}
 \cite{pistone:2018lagrange},
-\cite{chirco|malago|pistone:2020-arXiv:2009.09431}. In this setup,
-$\Delta^\circ(\Omega)$ is the interior of the probability simplex and
-$S = S\Delta^\circ(\Omega)$ is the \emph{statistical bundle}, that is,
-the set of all couples $(\gamma,u)$ with
+\cite{chirco|malago|pistone:2020-arXiv:2009.09431}. 
+
+If $\Delta^\circ(\Omega)$ is the interior of the probability simplex, we define the \emph{statistical bundle}
+$S\Delta^\circ(\Omega)$ to be the set of all couples $(\gamma,u)$ with
 $\gamma \in \Delta^\circ(\Omega)$ and $u$ a random variable such that
-$\expectat \gamma u=0$. For each smooth curve
-$t \mapsto \gamma(t) \in \Delta^\circ(\Omega)$ the \emph{velocity}
-$\velocity \gamma(t) = \derivby t \log \gamma(t)$ is characterised by
-\begin{equation}
-  \label{eq:1}
+$\expectat \gamma u = 0$. For each smooth curve
+$t \mapsto \gamma(t) \in \Delta^\circ(\Omega)$ the \emph{velocity} is 
+$\velocity \gamma(t) = \derivby t \log \gamma(t)$. Notice that $t \mapsto (\gamma(t),\velocity \gamma(t))$ is a curve in the statistical bundle. For each section $F$ we define the \emph{differential equation} $\velocity \gamma = F(\gamma)$. We have
+\begin{equation} 
+\label{eq:1}
   \derivby t \expectat {\gamma(t)} u = \scalarat {\gamma(t)} {u - \expectat {\gamma(t)} u} {\velocity
   \gamma(t)} \ .
 \end{equation}
 The mapping $\gamma \mapsto u - \expectat \gamma u$ is the
-\emph{gradient} of $\gamma \mapsto U(\gamma) = \expectat \gamma u$
+\emph{gradient mapping} of $\gamma \mapsto \expectat \gamma u$.
 
-On a sub-manifold, each fiber $S_\gamma$ of the
-statistical bundle splits to define a proper sub-statistical bundle. 
-We are interested in the sub-manifold of tranport plans. Let be given
+On a sub-manifold of $\Delta^\circ(\Omega)$, each fiber $S_\gamma$ of the
+statistical bundle splits to define the proper sub-statistical bundle. 
+We are interested in the sub-manifold of transport plans, see for example, \cite{santambrogio:2015otap}. Let be given
 $\gamma_1 \in \Delta^\circ(\Omega_1)$ and
 $\gamma_2 \in \Delta^\circ(\Omega_2)$. The \emph{transport model}
 with margins $\gamma_1$ and $\gamma_2$ is the statistical model
@@ -118,41 +110,28 @@ with margins $\gamma_1$ and $\gamma_2$ is the statistical model
   = \scalarat {\gamma_1}  f {{\velocity \gamma(t)}_1} \ , 
   \end{equation*}
 with ${\velocity \gamma(t)}_1(X) = \condexpectat {\gamma(t)} {\velocity
-  \gamma(t)} X$. It follows that
-\begin{equation*}
-  \condexpectat {\gamma(t)} {\velocity
-  \gamma(t)} X = 0 \quad \text{and} \quad \condexpectat {\gamma(t)} {\velocity
-  \gamma(t)} Y = 0 \ .
-\end{equation*}
+  \gamma(t)} X$. Similarly on the other projection. It follows that $\condexpectat {\gamma(t)} {\velocity
+  \gamma(t)} X = 0$ and $\condexpectat {\gamma(t)} {\velocity
+  \gamma(t)} Y = 0$. This suggests a characterization of the velocity bundle of the open transport model.
 
 Let us discuss more in detail the relevant splitting in the language
-of Analysis of Variance(ANOVA). Let $\gamma$ be
-a probability function on $\Omega$. The linear subspaces of the space
-of random variables $L(\Omega)$ which describe, respectively, the
-\emph{$\gamma$-grand-mean}, the two \emph{$\gamma$-marginal effects}, and
-the \emph{$\gamma$-interactions}, are
+of Analysis of Variance (ANOVA). The linear sub-spaces of $L^2(\gamma)$ which describe, respectively, the
+\emph{$\gamma$-grand-mean}, the two \emph{$\gamma$-marginal effects}, and the \emph{$\gamma$-interactions}, are
 %
 \begin{equation}\label{eq:ANOVA-spaces}
 \begin{aligned}
   B_0(\gamma) &\sim \reals, \\
-  B_1(\gamma) &= \setof{f\circ X}{f \in L_0(\gamma_1)},\\
-  B_2(\gamma) &= \setof{f\circ Y}{f \in L_0(\gamma_2)},\\
+  B_1(\gamma) &= \setof{f\circ X}{f \in L^2_0(\gamma_1)},\\
+  B_2(\gamma) &= \setof{f\circ Y}{f \in L^2_0(\gamma_2)},\\
   B_{12}(\gamma) &= (B_0(\gamma) + B_1(\gamma) + B_2(\gamma))^\perp,
 \end{aligned}
 \end{equation}
 %
-where orthogonality is computed in the $\gamma$ weight, that is in the scalar product
-%%
-\begin{equation*}
-  (u,v) \mapsto \scalarat \gamma u v = \sum_{\omega\in\Omega}u(\omega)v(\omega)
-  \gamma(\omega)\end{equation*}
-
-Each element of the space $B_0(\gamma) + B_1(\gamma) + B_2(\gamma)$
+where orthogonality is computed in the $\gamma$ weight, that is in the scalar product of $L^2(\gamma)$, $\scalarat \gamma u v = \expectat \gamma {uv}$. Each element of the space $B_0(\gamma) + B_1(\gamma) + B_2(\gamma)$
 has the form $u = u_0 + f_1(X) + f_2(Y)$, where
-$u_0 = \expectat \gamma u$ and $f_1,f_2$ are uniquely defined. More
-precisely, we have the following.
+$u_0 = \expectat \gamma u$ and $f_1,f_2$ are uniquely defined.
 
-\paragraph{$\bm\models$} \textit{For each $\gamma \in \Delta(\Omega)$ there exist a splitting
+\paragraph{$\bm\diamond$} \textit{For each $\gamma \in \Delta(\Omega)$ there exist a splitting
 %
 \begin{equation*}
 %
@@ -163,33 +142,21 @@ Namely, the splitting of each $u \in L(\gamma)$ is
 %
 \begin{equation}
  \label{eq:ANOVA}
- u = u_0 + u_1 + u_2 + u_{12} \ ,
+ u = u_0 + (u_1 + u_2) + u_{12} \ ,
 \end{equation}
 %
-where $u_0=\expectat \gamma u$ and $u_1+u_2$ is the
+where $u_0=\expectat \gamma u$ and $(u_1+u_2)$ is the
 $\gamma$-orthogonal projection of $u$ unto
 $B_1(\gamma) + B_2(\gamma)$.}
 
 Each couple of spaces in \cref{eq:ANOVA-spaces} has trivial
-intersection $\set{0}$, hence the splitting of $u \in L(\Omega)$ into
-is unique. As $\expectat \gamma u = u_0$ and $B_0(\gamma)$ is
+intersection $\set{0}$, hence the splitting in \cref{eq:ANOVA} is unique. As $\expectat \gamma u = u_0$ and $B_0(\gamma)$ is
 orthogonal to $B_1(\gamma)+B_2(\gamma)$, then $u_{12}$ is the
 orthogonal projection of $u - \expectat \gamma u$ unto
 $(B_1(\gamma)+B_2(\gamma))^\perp$, while $f_1(\gamma)+f_2(\gamma)$ is
-the orthogonal projection of $u$ onto $B_1(\gamma)+B_2(\gamma)$.
+the orthogonal projection of $u$ onto $B_1(\gamma)+B_2(\gamma)$. \qed
 
-\paragraph{$\bm\models$}\emph{The terms $u_1$ and $u_2$ in Eq. \cref{eq:ANOVA} are characterized by the equations
-%
-\begin{equation}
-\label{eq:projetion}
-  \begin{aligned}
-    \condexpectat \gamma {(u - u_0)} X u_1 + \condexpectat \gamma {(u-u_0)u_2} X &= 0 \ , \\
-    \condexpectat \gamma {(u - u_0)u_1} Y + \condexpectat \gamma {(u-u_0)} Y u_2 &= 0 \ .
-  \end{aligned}
-%
-\end{equation}}
-
-By definition, $(u - u_0) - (u_1 + u_2)$ is $\gamma$-orthogonal to each $g_1+g_2 \in B_1(\gamma)\oplus B_2(\gamma)$ i.e., to each $g_1 \in B_1(\gamma)$ and each $g_2 \in B_2(\gamma)$. The orthogonal projection in such a case is the conditional expectation,
+Let us derive a system of equations for the simple effects. By definition, $u_{12} = (u - u_0) - (u_1 + u_2)$ is $\gamma$-orthogonal to each $g_1 \in B_1(\gamma)$ and each $g_2 \in B_2(\gamma)$. The orthogonal projections on $B_1(\gamma)$ and $B_2(\gamma)$ are the conditional expectation with respect to $X$ and $Y$, respectively,
 %
   \begin{align*}
     0 &= \condexpectat \gamma {(u-u_0) - (u_1+u_2)}{X}  \ , \\
@@ -212,7 +179,7 @@ that is
   \end{align*}
   % 
 
-The ANOVA decomposition proves the existence of the splitting and suggests a matric computation. Assume zero mean, $u_0=0$. The following $(n_1+n_2)\times(n_1+n_2)$ linear system holds:
+The ANOVA decomposition proves the existence of the splitting and suggests a matrix computation. Assume zero mean, $u_0=0$. The following $(n_1+n_2)\times(n_1+n_2)$ linear system holds:
 %
 \begin{equation*}
 \begin{cases}
@@ -277,7 +244,7 @@ The element $P_{x_1x_2}$, $x_1,x_2 \in \Omega_1$, of $P = \Gamma_{2|1}\Gamma_{1|
   P_{x_1x_2} = \sum_{y \in \Omega_2} \gamma_{2|1}(y|x_1) \gamma_{1|2}(x_2|y) \ ,
 \end{equation*}
 %
-so that $P$ is a Markov matrix with strictly positive entries and stationary probability $\gamma_1$. because of the ergodic theorem, $P^n \to P^\infty = \bgamma_1^T \bm 1$, $n \to \infty$, so that 
+so that $P$ is a Markov matrix with strictly positive entries and stationary probability $\gamma_1$. Because of the ergodic theorem, $P^n \to P^\infty = \bgamma_1^T \bm 1$, $n \to \infty$, so that 
 %
 \begin{equation*}
 \lim_{n\to\infty} \left(\sum_{k=0}^n P^k\right)(I-P) = \lim_{n\to\infty} \left(I - P^{n+1}\right) = I - P^\infty \ , 
@@ -321,7 +288,7 @@ so that
   (I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T)^{+}(I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T) = \Pi_{\gamma_1} \ ,
 \end{equation*}
 %
-because $\Pi_{gamma_1} (I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T) = (I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T)$.
+because $\Pi_{\gamma_1} (I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T) = (I_{n_1}-\Gamma_{2|1}\Gamma_{1|2}^T)$.
 
 Similarly, for $Q = \Gamma_{2|1}^T\Gamma_{1|2}$, we have
 %
@@ -343,7 +310,7 @@ interior is never empty as it contains contains
 $\gamma_1 \otimes \gamma_2$. The sub-bundle is characterized by the
 following two statements.
 
-\paragraph{$\bm\models$} \emph{Let $t \mapsto \gamma(t) \in \Gamma^\circ(\gamma_1,\gamma_2)$ be a smooth curve with $\gamma(0)=\gamma$. Let $B_\gamma = S_\gamma \Delta^\circ(\Omega)$ be the fiber at $\gamma$ of the statistical bundle. Write the ANOVA decomposition as
+\paragraph{$\bm\diamond$} \emph{Let $t \mapsto \gamma(t) \in \Gamma^\circ(\gamma_1,\gamma_2)$ be a smooth curve with $\gamma(0)=\gamma$. Let $B_\gamma = S_\gamma \Delta^\circ(\Omega)$ be the fiber at $\gamma$ of the statistical bundle. Write the ANOVA decomposition as
   \begin{equation*}
     \Bspaceat \gamma = (B_1(\gamma) + B_2(\gamma)) \oplus B_{12}(\gamma) \ .
   \end{equation*}
@@ -358,7 +325,7 @@ We already know that $\expectat {\gamma} {\velocity\gamma(0)} = 0$. For each $f 
 %
 Same argument in the other margin. \qed
 
-\paragraph{$\bm\models$} \emph{Given any interaction $v \in B_{12}(\gamma)$, the curve $t \mapsto \gamma(t) = (1+tv)\gamma$ stays in $\Gamma^\circ(\gamma_1,\gamma_2)$ for $t$ in a neighborhood of 0 and $v = \velocity\gamma(0)$.} 
+\paragraph{$\bm\diamond$} \emph{Given any interaction $v \in B_{12}(\gamma)$, the curve $t \mapsto \gamma(t) = (1+tv)\gamma$ stays in $\Gamma^\circ(\gamma_1,\gamma_2)$ for $t$ in a neighborhood of 0 and $v = \velocity\gamma(0)$.} 
 
 If $V \in B_{12}(\gamma)$, there exist an open interval I around 0 such that $I \ni t \mapsto \gamma(t) = (1+tV)\gamma$ is a regular curve in $\Gamma^\circ(\mu_1,\mu_2) \subset \Delta^\circ(\Omega)$. It is indeed a curve in $\Delta^\circ(\Omega)$ because $\sum_{x,y} \gamma(x,y)(1+tv(x,y)) = \expectat \gamma {1+tv} = 1$ and because $\gamma(x,y)(1+tV(x,y)) > 0$ for all $x,y$, provided $t \in ]- (\max v)^{-1}, - (\min v)^{-1}[$.  The velocity exists,
 %
@@ -389,7 +356,7 @@ so that
 \begin{equation*}
   u \mapsto \euler^{u - K_p(u)} \cdot p \ , \quad K_p(u) = \log \expectat p {\euler^u} \ .
 \end{equation*}
-The sub-manifold of the transport model is flat in the mixture geometry and there is no simple expession of the exponential coordinate. A couple of dual parallel transports between the fibers can be computed as
+The sub-manifold of the transport model is flat in the mixture geometry and there is no simple expression of the exponential coordinate. A couple of dual parallel transports between the fibers can be computed as
 \begin{gather*}
   B^*_{12}(\gamma) \ni \eta \mapsto \frac \gamma {\bar\gamma} \eta \in B^*_{1,2}(\bar\gamma) \\
   B_{12}(\bar\gamma) \ni u \mapsto \Pi_{12}(\gamma) u \in B_{1,2}(\gamma) 
@@ -412,7 +379,7 @@ by the 1 parameter family
     \gamma(x,y;\theta) = \frac14(1+\bar b_1x+\bar b_2y+\theta xy), \quad -1 + \avalof{\bar b_1+\bar b_2} < \theta < 1 - \avalof{\bar b_1 - \bar b_2} \ .
   \end{equation*}
   All the computations related to the splitting can be performed
-  explicitely using the algebraic tools of polynomial algebra,
+  explicitly using the algebraic tools of polynomial algebra,
   see\cite{fontana|pistone|rogantin:2000}. In fact, the algebraic tool
   works in the general case, see \cite{pistone|rogantin:2008-jspi-1}.
 
@@ -422,7 +389,7 @@ by the 1 parameter family
   expected cost function
   $C \colon \Delta^\circ(\Omega)\ni \gamma \mapsto \expectat \gamma c$.
 
-\paragraph{$\bm \models$}  \emph{The function $\gamma \mapsto C(\gamma)$ restricted to the open transport model $\Gamma^\circ(\mu_1,\mu_2)$ has statistical gradient in $S\Gamma^\circ(\mu_1,\mu_2)$ given by
+\paragraph{$\bm \diamond$}  \emph{The function $\gamma \mapsto C(\gamma)$ restricted to the open transport model $\Gamma^\circ(\mu_1,\mu_2)$ has statistical gradient in $S\Gamma^\circ(\mu_1,\mu_2)$ given by
 %
 \begin{equation}\label{eq:gradient}
  \grad C \colon \gamma \mapsto c - c_{0,\gamma} - c_{1,\gamma} - c_{2,\gamma} \in S_\gamma\Gamma^\circ(\mu_1,\mu_2) = (S_\gamma \Delta^\circ)_{12} \ . 
@@ -432,7 +399,7 @@ For each smooth curve $t \mapsto \gamma(t)$, $\gamma(0) = \gamma$, we have
 \begin{equation*}
   \derivby t C(\gamma(t)) = \derivby t \expectat {\gamma(t)} c = \expectat {\gamma(t)} {c \velocity \gamma (t)} = \scalarat {\gamma(t)} {c_{12,\gamma(t)}} {\velocity \gamma(t)} \ .
 \end{equation*}
-where the have used the splitting at $\gamma(t)$,
+where we have used the splitting at $\gamma(t)$,
 \begin{equation*}
   c = c_{0,\gamma(t)} + c_{1,\gamma(t)} + c_{2,\gamma(t)} + c_{12,\gamma(t)}
 \end{equation*}
@@ -461,109 +428,26 @@ properties of the optimal solutions of the Kantorovich problem, see
 \cite{montrucchio|pistone:2019-arxiv:1905.07547},
 \cite{pistone|rapallo|rogantin:2021}.
 
-As a final remark, we observe that the splitting of the statistical bundle suggests that each $\gamma \in \Delta(\Omega_1\times\Omega_2)$ stays at the intersection of two orthogonal manifolds, namely, the tranport model with the margins of $\gamma$ and the additive exponential model $\euler^{u_1+u_2 - K_\gamma(u_1 + u_2)} \cdot \gamma$, $u_1 \in B_1(\gamma)$ and $u_2 \in B_2(\gamma)$.
+As a final remark, we observe that the splitting of the statistical bundle suggests that each $\gamma \in \Delta(\Omega_1\times\Omega_2)$ stays at the intersection of two orthogonal manifolds, namely, the  model with the margins of $\gamma$ and the additive exponential model $\euler^{u_1+u_2 - K_\gamma(u_1 + u_2)} \cdot \gamma$, $u_1 \in B_1(\gamma)$ and $u_2 \in B_2(\gamma)$.
 
 \paragraph{Acknowledgments}
-The author thanks Luigi Malag\`o and Luigi Montrucchio for their helful suggestions during the development of the present note.
+The author thanks Luigi Malag\`o and Luigi Montrucchio for their helpful suggestions during the development of the present note. We announced some of this note results at the ``Computational information geometry for image and signal processing'' Conference, Sep 21--25 2015 ICMS, Edinburgh.
 
-% \subsection{A Subsection Sample}
-% Please note that the first paragraph of a section or subsection is
-% not indented. The first paragraph that follows a table, figure,
-% equation etc. does not need an indent, either.
-
-% Subsequent paragraphs, however, are indented.
-
-% \subsubsection{Sample Heading (Third Level)} Only two levels of
-% headings should be numbered. Lower level headings remain unnumbered;
-% they are formatted as run-in headings.
-
-% \paragraph{Sample Heading (Fourth Level)}
-% The contribution should contain no more than four levels of
-% headings. Table~\ref{tab1} gives a summary of all heading levels.
-
-% \begin{table}
-% \caption{Table captions should be placed above the
-% tables.}\label{tab1}
-% \begin{tabular}{|l|l|l|}
-% \hline
-% Heading level &  Example & Font size and style\\
-% \hline
-% Title (centered) &  {\Large\bfseries Lecture Notes} & 14 point, bold\\
-% 1st-level heading &  {\large\bfseries 1 Introduction} & 12 point, bold\\
-% 2nd-level heading & {\bfseries 2.1 Printing Area} & 10 point, bold\\
-% 3rd-level heading & {\bfseries Run-in Heading in Bold.} Text follows & 10 point, bold\\
-% 4th-level heading & {\itshape Lowest Level Heading.} Text follows & 10 point, italic\\
-% \hline
-% \end{tabular}
-% \end{table}
-
-
-% \noindent Displayed equations are centered and set on a separate
-% line.
-% \begin{equation}
-% x + y = z
-% \end{equation}
-% Please try to avoid rasterized images for line-art diagrams and
-% schemas. Whenever possible, use vector graphics instead (see
-% Fig.~\ref{fig1}).
-
-% \begin{figure}
-% \includegraphics[width=\textwidth]{fig1.eps}
-% \caption{A figure caption is always placed below the illustration.
-% Please note that short captions are centered, while long ones are
-% justified by the macro package automatically.} \label{fig1}
-% \end{figure}
-
-% \begin{theorem}
-% This is a sample theorem. The run-in heading is set in bold, while
-% the following text appears in italics. Definitions, lemmas,
-% propositions, and corollaries are styled the same way.
-% \end{theorem}
-% %
-% % the environments 'definition', 'lemma', 'proposition', 'corollary',
-% % 'remark', and 'example' are defined in the LLNCS documentclass as well.
-% %
-% \begin{proof}
-% Proofs, examples, and remarks have the initial word in italics,
-% while the following text appears in normal font.
-% \end{proof}
-% For citations of references, we prefer the use of square brackets
-% and consecutive numbers. Citations using labels or the author/year
-% convention are also acceptable. The following bibliography provides
-% a sample reference list with entries for journal
-% articles~\cite{ref_article1}, an LNCS chapter~\cite{ref_lncs1}, a
-% book~\cite{ref_book1}, proceedings without editors~\cite{ref_proc1},
-% and a homepage~\cite{ref_url1}. Multiple citations are grouped
-% \cite{ref_article1,ref_lncs1,ref_book1},
-% \cite{ref_article1,ref_book1,ref_proc1,ref_url1}.
-%
-% ---- Bibliography ----
-%
-% BibTeX users should specify bibliography style 'splncs04'.
-% References will then be sorted and formatted in the correct style.
 %
 \bibliographystyle{splncs04}
 \bibliography{tutto}
 %
-% \begin{thebibliography}{8}
-% \bibitem{ref_article1}
-% Author, F.: Article title. Journal \textbf{2}(5), 99--110 (2016)
 
-% \bibitem{ref_lncs1}
-% Author, F., Author, S.: Title of a proceedings paper. In: Editor,
-% F., Editor, S. (eds.) CONFERENCE 2016, LNCS, vol. 9999, pp. 1--13.
-% Springer, Heidelberg (2016). \doi{10.10007/1234567890}
-
-% \bibitem{ref_book1}
-% Author, F., Author, S., Author, T.: Book title. 2nd edn. Publisher,
-% Location (1999)
-
-% \bibitem{ref_proc1}
-% Author, A.-B.: Contribution title. In: 9th International Proceedings
-% on Proceedings, pp. 1--2. Publisher, Location (2010)
-
-% \bibitem{ref_url1}
-% LNCS Homepage, \url{http://www.springer.com/lncs}. Last accessed 4
-% Oct 2017
-% \end{thebibliography}
 \end{document}
+
+
+\paragraph{$\bm\diamond$}\emph{The terms $u_1$ and $u_2$ in \cref{eq:ANOVA} are characterized by the equations
+%
+\begin{equation}
+\label{eq:projetion}
+  \begin{aligned}
+    \condexpectat \gamma {(u - u_0)} X u_1 + \condexpectat \gamma {(u-u_0)u_2} X &= 0 \ , \\
+    \condexpectat \gamma {(u - u_0)u_1} Y + \condexpectat \gamma {(u-u_0)} Y u_2 &= 0 \ .
+  \end{aligned}
+%
+\end{equation}}
