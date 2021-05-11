@@ -361,26 +361,25 @@ As a final remark, we observe that the splitting of the statistical bundle sugge
 
 \section{A toy example}
 
-The simplest non-trivial case is $n_1=n_2=2$. Let
-$\Omega_1=\Omega_2=\set{+1,-1}$. Any function $u$ on $\Omega$ has the
-pseudo-Boolean form $u(x,y)=a_0+a_1 x + a_2 y + a_{12} xy$. In
-particular a probability has the form
-$\gamma(x,y) = \frac14(1+b_1x+b_2y+b_{12}xy)$ with margins
-$\mu_1(x) = \frac12(1+b_1x)$,
-$\mu_2(y) = \frac12(1+b_2y)$. Given
-$b_1, b_2 \in ]-1,+1[$ to fix positive margins, the transport model is given
-by the 1-parameter family
-%
-  \begin{equation*}
-    \gamma(x,y;\theta) = \frac14(1+ b_1x+ b_2y+\theta xy)\ , \quad -1 + \avalof{b_1+b_2} \leq \theta \leq 1 - \avalof{b_1 - b_2} \ .
-  \end{equation*}
-  The conditional probability functions are 
-  \begin{gather*}
-  \gamma_{1|2}(x|y) = \frac12 \left(1+\frac{b_1-b_2\theta}{1-b_2^2}x+\frac{-b_1b_2 + \theta}{1-b_2^2}xy\right) \\
-  \gamma_{2|1}(y|x) = \frac12 \left(1+\frac{b_2-b_1\theta}{1-b_1^2}y+\frac{-b_1b_2 + \theta}{1-b_1^2}xy\right)
-  \end{gather*}
-  %All the computations related to the splitting can be performed explicitly using the algebraic tools of polynomial algebra, see\cite{fontana|pistone|rogantin:2000}. In fact, the algebraic tool works in the general case, see \cite{pistone|rogantin:2008-jspi-1}.
+The simplest non-trivial case is $n_1=n_2=2$. Let us use the coding $\Omega_1=\Omega_2=\set{+1,-1}$. Any function $u$ on $\Omega$ has the pseudo-Boolean form $u(x,y)=a_0+a_1 x + a_2 y + a_{12} xy$. Notice that the monomials $1,x,y,xy$ are orthogonal in the counting measure. In particular, a probability has the form $\gamma(x,y) = \frac14(1+b_1x+b_2y+b_{12}xy)$ with margins $\mu_1(x) = \frac12(1+b_1x)$, $\mu_2(y) = \frac12(1+b_2y)$. Notice that the coefficients are the values of the moments. Given $b_1, b_2 \in ]-1,+1[$ to fix positive margins, the transport model is the 1-parameter family
+\begin{equation*} \gamma(x,y;\theta) = \frac14(1+ b_1x+ b_2y+\theta xy)\ , \quad -1 + \avalof{b_1+b_2} \leq \theta \leq 1 - \avalof{b_1 - b_2} \ . \end{equation*}
 
+The conditional probability functions are
+\begin{gather*} \gamma_{1|2}(x|y) = \frac12 \left(1+\frac{b_1-b_2\theta}{1-b_2^2}x+\frac{-b_1b_2 + \theta}{1-b_2^2}xy\right) \\ \gamma_{2|1}(y|x) = \frac12 \left(1+\frac{b_2-b_1\theta}{1-b_1^2}y+\frac{-b_1b_2 + \theta}{1-b_1^2}xy\right) \end{gather*}
+
+Let us compute the simple effects of a generic $u = \alpha_0 + \alpha_1 x + \alpha_2 y + \alpha_{12} xy$. We have $u_0 = \alpha_0 + \alpha_1 b_1 + \alpha_2 b_2 + \alpha_{12} \theta$, so that
+\begin{equation*}
+  u(x,y) - u_0 = \alpha_1 (x - b_1) + \alpha_2(y-b_2) + \alpha_{12} (xy - \theta) \ .
+\end{equation*}
+If the simple effects are $u_1(x) + u_2(y) = \beta_1 (x - b_1) + \beta_2(y-b_2)$, then
+\begin{multline*}
+  u_{12}(x,y) = u(x,y) - u_0 - (u_1(x) + u_2(y)) = \\ (\alpha_1-\beta_1)(x-b_1)+(\alpha_2-\beta_2)(y-b_2)+\alpha_{12}(xy-\theta) \ .  
+\end{multline*}
+The orthogonality conditions $0 = \expectat \gamma {u_{12}(x - b_1)} = \expectat \gamma {u_{12}(y-b_2)}$ are
+\begin{gather*}
+  (\alpha_1-\beta_1)(1-b_1^2)+(\alpha_2-\beta_2)(\theta-b_1b_2) = - \alpha_{12}(b_2-\theta b_1) \\
+  (\alpha_1-\beta_1)(\theta-b_1b_2)+(\alpha_2-\beta_2)(1 - b_2^2)= - \alpha_{12}(b_1-\theta b_2)  
+\end{gather*}
 
 \paragraph{Acknowledgments}
 The author thanks L. Malag\`o and L. Montrucchio. We presented first this project at the ``Computational information geometry for image and signal processing'' Conference, Sep 21--25 2015 ICMS, Edinburgh.
