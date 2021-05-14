@@ -80,11 +80,11 @@ Without restriction of generality, we assume the two margins $\mu_1$ and $\mu_2$
 \begin{equation*} \Gamma^\circ(\mu_1,\mu_2) = \setof{\gamma \in \Delta^\circ(\Omega)}{\gamma(\cdot,+) = \mu_1, \gamma(+,\cdot) = \mu_2} \ .
 \end{equation*}
 
-Marginalization acts on velocities as a conditional expectation. If $t \mapsto \gamma(t)$ is a smooth curve in the open transport model, then \cref{eq:1} with $u = f(X)$ gives \begin{equation*} 0 = \derivby t \expectat {\mu_1} f =  \derivby t \expectat {\gamma(t)} {f(X)} = \scalarat {\gamma(t)}  {f(X)} {\velocity \gamma(t)} = \scalarat {\mu_1}  f {{\velocity \gamma(t)}_1} \ , \end{equation*} with ${\velocity \gamma(t)}_1(X) = \condexpectat {\gamma(t)} {\velocity \gamma(t)} X$. Similarly on the other projection. It follows that $\condexpectat {\gamma(t)} {\velocity \gamma(t)} X = 0$ and $\condexpectat {\gamma(t)} {\velocity \gamma(t)} Y = 0$. This suggests the characterization of the velocity bundle of the open transport model we develop in the following section.
+Marginalization acts on velocities as a conditional expectation. If $t \mapsto \gamma(t)$ is a smooth curve in the open transport model, then \cref{eq:1} with $u = f \circ X$ gives \begin{equation*} 0 = \derivby t \expectat {\mu_1} f =  \derivby t \expectat {\gamma(t)} {f(X)} = \scalarat {\gamma(t)}  {f(X)} {\velocity \gamma(t)} = \scalarat {\mu_1}  f {{\velocity \gamma(t)}_1} \ , \end{equation*} with ${\velocity \gamma(t)}_1(X) = \condexpectat {\gamma(t)} {\velocity \gamma(t)} X$. Similarly on the other projection. It follows that $\condexpectat {\gamma(t)} {\velocity \gamma(t)} X = 0$ and $\condexpectat {\gamma(t)} {\velocity \gamma(t)} Y = 0$. This suggests the characterization of the velocity bundle of the open transport model we develop in the following section.
 
 \section{ANOVA}
 
-Let us discuss more in detail the relevant splittings. We use the statistical language of Analysis of Variance (ANOVA). Recall that $\gamma \in \Delta^\circ(\Omega)$. The linear sub-spaces of $L^2(\gamma)$ which , respectively, express the \emph{$\gamma$-grand-mean}, the two \emph{$\gamma$-marginal effects}, and the \emph{$\gamma$-interactions}, are
+Let us discuss more in detail the relevant splittings. We use the statistical language of Analysis of Variance (ANOVA). Recall that $\gamma \in \Delta^\circ(\Omega)$. The linear sub-spaces of $L^2(\gamma)$ which , respectively, express the \emph{$\gamma$-grand-mean}, the two \emph{$\gamma$-simple effects}, and the \emph{$\gamma$-interactions}, are
 \begin{equation}\label{eq:ANOVA-spaces} \begin{aligned} B_0(\gamma) &\sim \reals, \\ B_1(\gamma) &= \setof{f\circ X}{f \in L^2_0(\gamma_1)},\\ B_2(\gamma) &= \setof{f\circ Y}{f \in L^2_0(\gamma_2)},\\ B_{12}(\gamma) &= (B_0(\gamma) + B_1(\gamma) + B_2(\gamma))^\perp, \end{aligned} \end{equation}
 where the orthogonality is computed in the $\gamma$ weight, that is in the inner product of $L^2(\gamma)$, $\scalarat \gamma u v = \expectat \gamma {uv}$. Each element of the space $B_0(\gamma) + B_1(\gamma) + B_2(\gamma)$ has the form $u = u_0 + f_1(X) + f_2(Y)$, where $u_0 = \expectat \gamma u$ and $f_1,f_2$ are uniquely defined. 
 
@@ -306,7 +306,7 @@ where $(1+u_{12}) \cdot \gamma \in \Gamma^\circ(\gamma_1,\gamma_2)$ and, for eac
 \end{remark}
 
 \section{Gradient flow of the transport problem}
-
+\label{sec:gradientflow}
 Let us discuss the optimal transport problem in the framework of the transport model bundle of \cref{eq:2}. Let be given a cost function $c \colon \Omega_1 \times \Omega_2 = \Omega \to \reals$ and define the expected cost function $C \colon \Delta(\Omega)\ni \gamma \mapsto \expectat \gamma c$.
 
 \begin{proposition}The function $\gamma \mapsto C(\gamma)$ restricted to the open transport model $\Gamma^\circ(\mu_1,\mu_2)$ has statistical gradient in $S\Gamma^\circ(\mu_1,\mu_2)$ given by
@@ -330,7 +330,7 @@ together with the fact that the velocity $\velocity\gamma(t)$ is an interaction.
 It follows that the equation of the \emph{gradient flow of $C$} is
 %
 \begin{equation*}
-  \velocity \gamma = - \left(c - c_{0,\gamma} - (c_{1,\gamma} - c_{2,\gamma})\right) \ .
+  \velocity \gamma = - \left(c - c_{0,\gamma} - (c_{1,\gamma} + c_{2,\gamma})\right) \ .
 \end{equation*}
 
 \begin{remark}
@@ -375,9 +375,8 @@ The system has a unique closed-form solution.
 \end{remark}
 
 \paragraph{Acknowledgments}
-The author thanks three anonymous referees whose comments suggested a complete revision of the first version. The author thanks L. Malag\`o and L. Montrucchio for valuable suggestions. We presented this project first at the ``Computational information geometry for image and signal processing'' Conference, Sep 21--25 2015 ICMS, Edinburgh.
+The author thanks three anonymous referees whose comments suggested a complete revision of the first version. The author thanks L. Malag\`o and L. Montrucchio for valuable suggestions. We first presented the gradient flow argument of \cref{sec:gradientflow} to the ``Computational information geometry for image and signal processing'' Conference, Sep 21--25 2015 ICMS, Edinburgh.
 
-%
 \bibliographystyle{splncs04}
 \bibliography{tutto}
 %
